@@ -25,3 +25,18 @@
 .active {
   color: blueviolet;
 }
+
+.search-bar {
+  display: block;
+  margin: 45px auto;
+  width: 300px;
+  height: 40px;
+  font-size: 18px;
+  padding: 5px 10px;
+  color: blueviolet;
+}
+
+.search-bar::placeholder {
+  font-style: oblique;
+  font-size: 18px;
+}
