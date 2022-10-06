@@ -5,3 +5,7 @@ export interface ICardProps {
   color: string;
   price: string;
 }
+
+export interface ISearchBarState {
+  value: string;
+}
