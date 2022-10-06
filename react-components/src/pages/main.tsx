@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from 'components/search-bar';
+import AllCards from 'components/all-cards';
 
 class Main extends React.Component {
   render() {
@@ -11,6 +12,7 @@ class Main extends React.Component {
         <h2>Main page content</h2>
         <p>~~~~~</p>
         <p>~~~~~</p>
+        <AllCards />
       </div>
     );
   }
