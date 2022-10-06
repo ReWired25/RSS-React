@@ -7,11 +7,6 @@ class Main extends React.Component {
     return (
       <div>
         <SearchBar />
-        <p>~~~~~</p>
-        <p>~~~~~</p>
-        <h2>Main page content</h2>
-        <p>~~~~~</p>
-        <p>~~~~~</p>
         <AllCards />
       </div>
     );
