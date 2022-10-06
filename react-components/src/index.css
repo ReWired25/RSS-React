@@ -4,39 +4,6 @@
   box-sizing: border-box;
 }
 
-.header {
-  height: 80px;
-  background-color: rgb(245, 245, 245);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: bold;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: black;
-}
-
-.active {
-  color: blueviolet;
-}
-
-.search-bar {
-  display: block;
-  margin: 45px auto;
-  width: 300px;
-  height: 40px;
-  font-size: 18px;
-  padding: 5px 10px;
-  color: blueviolet;
-}
-
-.search-bar::placeholder {
-  font-style: oblique;
-  font-size: 18px;
-}
+@import './styles/header.css';
+@import './styles/search-bar.css';
+@import './styles/cards.css';
