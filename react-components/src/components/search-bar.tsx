@@ -9,10 +9,10 @@ class SearchBar extends React.Component<Record<string, string>, ISearchBarState>
   }
 
   handleChange(e: ChangeEvent) {
-    const bar = e.target as HTMLInputElement;
+    const searchInput = e.target as HTMLInputElement;
 
-    this.setState({ value: bar.value });
-    setStorage(bar.value);
+    this.setState({ value: searchInput.value });
+    setStorage(searchInput.value);
   }
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class SearchBar extends React.Component<Record<string, string>, ISearchBarState>
           this.handleChange(e);
         }}
         value={this.state ? this.state.value : ''}
-      ></input>
+      />
     );
   }
 }

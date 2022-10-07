@@ -6,16 +6,9 @@ class AllCards extends React.Component {
   render() {
     return (
       <div className="all-cards-container">
-        {data.map((card, index) => {
+        {data.map(({ img, title, type, color, price }, index) => {
           return (
-            <Card
-              key={index}
-              img={card.img}
-              title={card.title}
-              type={card.type}
-              color={card.color}
-              price={card.price}
-            />
+            <Card key={index} img={img} title={title} type={type} color={color} price={price} />
           );
         })}
       </div>
