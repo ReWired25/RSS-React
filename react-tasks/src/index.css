@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import './components/Header/Header.css';
+@import './components/Navigation/Navigation.css';
+@import './components/AllCards/AllCards.css';
+@import './components/Card/Card.css';
+@import './components/SearchBar/SearchBar.css';
+@import './pages/AboutUs/AboutUs.css';
+@import './pages/ErrorResponse/ErrorResponse.css';

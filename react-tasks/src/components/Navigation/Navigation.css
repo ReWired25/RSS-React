@@ -1,0 +1,16 @@
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  color: blueviolet;
+}

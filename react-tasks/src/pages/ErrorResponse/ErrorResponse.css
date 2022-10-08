@@ -1,0 +1,22 @@
+.error-container {
+  margin: 50px auto;
+  max-width: 700px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.error-status {
+  font-size: 35px;
+}
+
+.error-title {
+  font-size: 25px;
+}
+
+.error-info {
+  font-size: 20px;
+}

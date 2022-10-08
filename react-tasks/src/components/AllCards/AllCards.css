@@ -1,0 +1,7 @@
+.all-cards-container {
+  padding: 35px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
