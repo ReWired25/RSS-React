@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
-import { setStorage, getStorage } from 'local-storage';
+import { setStorage, getStorage } from 'localStorage/localStorage';
 
-import { ISearchBarState } from 'types/interfaces';
+import { ISearchBarState } from './types';
 
 class SearchBar extends React.Component<Record<string, string>, ISearchBarState> {
   constructor(props: Record<string, string>) {

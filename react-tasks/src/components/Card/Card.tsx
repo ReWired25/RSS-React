@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { ICardProps } from 'types/interfaces';
-import { CardStyles } from 'types/enums';
+import { ICardProps, CardStyles } from './types';
 
 class Card extends React.Component<ICardProps> {
   selectColor() {

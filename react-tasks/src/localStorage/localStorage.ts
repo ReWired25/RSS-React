@@ -1,4 +1,4 @@
-import { Storage } from 'types/enums';
+import { Storage } from './types';
 
 export const setStorage = (value: string): void => {
   const key = Storage.key;

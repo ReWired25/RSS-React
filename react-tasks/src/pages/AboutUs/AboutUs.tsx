@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AboutInfo } from 'types/enums';
+import { AboutInfo } from './types';
 
 class AboutUs extends React.Component {
   render() {

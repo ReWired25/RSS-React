@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { INavigationProps } from 'types/interfaces';
+import { INavigationProps } from './types';
 
 class Navigation extends React.Component<INavigationProps> {
   handleLink(path: string, name: string) {
