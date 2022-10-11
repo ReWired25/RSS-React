@@ -10,11 +10,13 @@ import SearchBar from '../components/SearchBar/SearchBar';
 
 describe('layout render', () => {
   test('render layout component', () => {
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />} />
-      </Routes>
-    </BrowserRouter>;
+    render(
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />} />
+        </Routes>
+      </BrowserRouter>
+    );
   });
 });
 
