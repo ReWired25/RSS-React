@@ -3,9 +3,9 @@ import React from 'react';
 class Select extends React.Component {
   render() {
     return (
-      <label>
+      <label className="select-country-container">
         <p>Country:</p>
-        <select name="selectCountry">
+        <select className="select-country" name="selectCountry">
           <option value="France">France</option>
           <option value="Germany">Germany</option>
           <option value="England">England</option>

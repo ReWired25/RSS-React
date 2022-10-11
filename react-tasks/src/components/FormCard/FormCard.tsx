@@ -15,7 +15,7 @@ class FormCard extends React.Component<IFormCardProps> {
             </p>
           );
         })}
-        <img className="card-img" src={this.props.picture} alt="user-picture" />
+        <img className="form-card-img" src={this.props.picture} alt="user-picture" />
       </div>
     );
   }

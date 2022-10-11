@@ -1,11 +1,24 @@
+.switcher-container {
+  order: 3;
+  display: flex;
+  width: 280px;
+  justify-content: space-between;
+}
+
 .input-switcher {
   position: relative;
-  display: inline-block;
-  background-color: aqua;
+  display: block;
+  background-color: #cba3f1;
+  border: 2px solid #353535;
   border-radius: 20px;
   width: 70px;
   height: 35px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.switcher-text {
+  width: 180px;
 }
 
 .switcher-input {
@@ -16,10 +29,15 @@
   position: absolute;
   top: 2.5px;
   left: 5px;
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   background-color: white;
   border-radius: 50%;
+  transition: 0.3s;
+}
+
+.input-switcher:has(.switcher-input:checked)  {
+  background-color: blueviolet;
   transition: 0.3s;
 }
 

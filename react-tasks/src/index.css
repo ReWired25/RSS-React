@@ -6,6 +6,7 @@
 
 @import './pages/AboutUs/AboutUs.css';
 @import './pages/ErrorResponse/ErrorResponse.css';
+@import './pages/Forms/Forms.css';
 
 @import './components/Header/Header.css';
 @import './components/Navigation/Navigation.css';
@@ -18,3 +19,4 @@
 @import './components/UserForm/Switcher/Switcher.css';
 @import './components/UserForm/Input/input.css';
 @import './components/UserForm/SubmitButton/SubmitButton.css';
+@import './components/UserForm/Select/Select.css';

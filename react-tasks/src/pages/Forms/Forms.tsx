@@ -31,20 +31,22 @@ class Forms extends React.Component<Record<string, string>, IFormsData> {
     return (
       <>
         <UserForm onChange={(newData: InewData) => this.handleNewData(newData)} />
-        {this.state.value.length > 0 &&
-          this.state.value.map(({ name, surname, date, country, switcher, picture }, index) => {
-            return (
-              <FormCard
-                key={index}
-                name={name}
-                surname={surname}
-                date={date}
-                country={country}
-                switcher={switcher}
-                picture={picture}
-              />
-            );
-          })}
+        <div className="cards-container">
+          {this.state.value.length > 0 &&
+            this.state.value.map(({ name, surname, date, country, switcher, picture }, index) => {
+              return (
+                <FormCard
+                  key={index}
+                  name={name}
+                  surname={surname}
+                  date={date}
+                  country={country}
+                  switcher={switcher}
+                  picture={picture}
+                />
+              );
+            })}
+        </div>
       </>
     );
   }

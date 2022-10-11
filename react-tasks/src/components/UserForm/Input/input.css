@@ -1,12 +1,53 @@
 .input-label {
   position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
 .invalid-message {
   display: none;
 }
 
+.input-field {
+  width: 230px;
+  padding: 5px;
+  font-size: 17px;
+}
+
+.input-field[type='file'] {
+  width: 290px;
+}
+
+.input-field[type='file'],
+.input-field[type='date'],
+.input-field[type='checkbox'] {
+  cursor: pointer;
+}
+
+.input-field[type='checkbox'] {
+  height: 20px;
+}
+
 .input-field.invalid ~ .invalid-message {
   position: absolute;
   display: block;
+  top: 65px;
+  font-size: 15px;
+  color: orangered;
+}
+
+.input-field[type='checkbox'].invalid ~ .invalid-message {
+  top: 50px;
+}
+
+.input-file {
+  order: 2;
+}
+
+.input-checkbox {
+  order: 4;
 }

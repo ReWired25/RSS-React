@@ -1,3 +1,18 @@
-.card-img {
-  height: 200px;
+.form-card {
+  padding: 20px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  color: darkmagenta;
+  border-radius: 5px;
+  border: 2px solid darkmagenta;
+}
+
+.form-card-img {
+  width: 250px;
 }
