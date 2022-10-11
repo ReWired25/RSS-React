@@ -4,10 +4,17 @@
   box-sizing: border-box;
 }
 
+@import './pages/AboutUs/AboutUs.css';
+@import './pages/ErrorResponse/ErrorResponse.css';
+
 @import './components/Header/Header.css';
 @import './components/Navigation/Navigation.css';
 @import './components/AllCards/AllCards.css';
 @import './components/Card/Card.css';
 @import './components/SearchBar/SearchBar.css';
-@import './pages/AboutUs/AboutUs.css';
-@import './pages/ErrorResponse/ErrorResponse.css';
+@import './components/FormCard/FormCard.css';
+
+@import './components/UserForm/UserForm.css';
+@import './components/UserForm/Switcher/Switcher.css';
+@import './components/UserForm/Input/input.css';
+@import './components/UserForm/SubmitButton/SubmitButton.css';

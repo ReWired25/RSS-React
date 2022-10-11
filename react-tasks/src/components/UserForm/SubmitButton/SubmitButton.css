@@ -1,0 +1,12 @@
+.submit-button-container {
+  position: relative;
+}
+
+.submit-message {
+  display: none;
+}
+
+.submit-button.submit-success ~ .submit-message {
+  position: absolute;
+  display: block;
+}

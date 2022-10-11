@@ -1,0 +1,28 @@
+.input-switcher {
+  position: relative;
+  display: inline-block;
+  background-color: aqua;
+  border-radius: 20px;
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.switcher-input {
+  display: none;
+}
+
+.switcher-slider {
+  position: absolute;
+  top: 2.5px;
+  left: 5px;
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switcher-input:checked + .switcher-slider {
+  transform: translateX(30px);
+}

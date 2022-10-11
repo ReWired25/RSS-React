@@ -40,16 +40,8 @@ describe('all cards render', () => {
 
 describe('cards with data', () => {
   test('render each card with data', () => {
-    data.forEach((cardData) => {
-      render(
-        <Card
-          img={cardData.img}
-          title={cardData.title}
-          type={cardData.type}
-          color={cardData.color}
-          price={cardData.price}
-        />
-      );
+    data.forEach(({ img, title, type, color, price }) => {
+      render(<Card img={img} title={title} type={type} color={color} price={price} />);
     });
   });
 });

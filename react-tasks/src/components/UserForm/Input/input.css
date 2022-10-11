@@ -1,0 +1,12 @@
+.input-label {
+  position: relative;
+}
+
+.invalid-message {
+  display: none;
+}
+
+.input-field.invalid ~ .invalid-message {
+  position: absolute;
+  display: block;
+}
