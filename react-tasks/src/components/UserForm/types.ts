@@ -34,3 +34,11 @@ export enum Notifications {
 export enum InputValue {
   invalid = 'invalid',
 }
+
+export enum Initial {
+  country = 'France',
+}
+
+export enum Clear {
+  input = '',
+}

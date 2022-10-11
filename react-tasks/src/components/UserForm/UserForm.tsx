@@ -13,6 +13,8 @@ import {
   Picture,
   Notifications,
   InputValue,
+  Initial,
+  Clear,
 } from './types';
 
 class UserForm extends React.Component<IUserFormProps> {
@@ -84,7 +86,12 @@ class UserForm extends React.Component<IUserFormProps> {
     this.props.onChange(newData);
 
     submitButton.classList.add('submit-success');
-    form.reset();
+    submitButton.disabled = true;
+
+    [inputName, inputSurname, inputDate, inputFile].forEach((field) => (field.value = Clear.input));
+    selectCountry.value = Initial.country;
+    inputSwitcher.checked = false;
+    inputCheckbox.checked = false;
   };
 
   handleSubmitButton: React.FormEventHandler<HTMLFormElement & IFormsInputs> = (e) => {
