@@ -98,7 +98,6 @@ class UserForm extends React.Component<IUserFormProps> {
     const form = e.currentTarget;
     const button = form.submitButton;
     const { inputName, inputSurname, inputDate, inputCheckbox, inputFile } = form;
-    if (!inputName || !inputSurname || !inputDate || !inputCheckbox || !inputFile) return;
 
     button.classList.remove('submit-success');
 
