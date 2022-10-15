@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { setStorage, getStorage } from 'localStorage/localStorage';
+import { setStorage, getStorage } from 'localStorage';
 
 import { ISearchBarState } from './types';
 

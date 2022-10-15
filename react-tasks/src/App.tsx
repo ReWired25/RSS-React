@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RoutesPages from 'components/RoutesPages/RoutesPages';
+import RoutesPages from 'components/RoutesPages';
 import { pagesForRoutes } from 'constants/RoutesPages';
 
 class App extends React.Component {

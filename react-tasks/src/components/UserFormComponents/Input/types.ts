@@ -3,5 +3,5 @@ export interface IInputProps {
   labelText: string;
   inputType: string;
   inputName: string;
-  validationMessage: string;
+  validationMessage: string | false;
 }

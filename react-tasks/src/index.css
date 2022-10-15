@@ -4,19 +4,19 @@
   box-sizing: border-box;
 }
 
-@import './pages/AboutUs/AboutUs.css';
-@import './pages/ErrorResponse/ErrorResponse.css';
-@import './pages/Forms/Forms.css';
+@import './pages/AboutUs';
+@import './pages/ErrorResponse';
+@import './pages/Forms';
 
-@import './components/Header/Header.css';
-@import './components/Navigation/Navigation.css';
-@import './components/AllCards/AllCards.css';
-@import './components/Card/Card.css';
-@import './components/SearchBar/SearchBar.css';
-@import './components/FormCard/FormCard.css';
+@import './components/AllCards';
+@import './components/Card';
+@import './components/FormCard';
+@import './components/Header';
+@import './components/Navigation';
+@import './components/SearchBar';
 
-@import './components/UserForm/UserForm.css';
-@import './components/UserForm/Switcher/Switcher.css';
-@import './components/UserForm/Input/input.css';
-@import './components/UserForm/SubmitButton/SubmitButton.css';
-@import './components/UserForm/Select/Select.css';
+@import './components/UserFormComponents/Input';
+@import './components/UserFormComponents/Select';
+@import './components/UserFormComponents/SubmitButton';
+@import './components/UserFormComponents/Switcher';
+@import './components/UserFormComponents/UserForm';

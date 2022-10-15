@@ -4,14 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 import { IRoutesPagesProps, RouteValue } from './types';
 
 class RoutesPages extends React.Component<IRoutesPagesProps> {
-  handlePage(path: string, page: JSX.Element) {
-    if (path === RouteValue.MainPath) {
-      return <Route key={path} index element={page} />;
-    }
-
-    return <Route key={path} path={path} element={page} />;
-  }
-
   render() {
     return (
       <Routes>
@@ -20,7 +12,10 @@ class RoutesPages extends React.Component<IRoutesPagesProps> {
           element={this.props.pages[RouteValue.Layout].page}
         >
           {this.props.pages.slice(RouteValue.Main).map(({ path, page }) => {
-            return this.handlePage(path, page);
+            if (path === RouteValue.MainPath) {
+              return <Route key={path} index element={page} />;
+            }
+            return <Route key={path} path={path} element={page} />;
           })}
         </Route>
       </Routes>

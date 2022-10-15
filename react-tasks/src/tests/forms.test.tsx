@@ -2,11 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Forms from 'pages/Forms/Forms';
-import FormCard from '../components/FormCard/FormCard';
-import Input from '../components/UserForm/Input/Input';
-import Select from '../components/UserForm/Select/Select';
-import Switcher from '../components/UserForm/Switcher/Switcher';
+import Forms from 'pages/Forms';
+import FormCard from '../components/FormCard';
+import Input from '../components/UserFormComponents/Input';
+import Select from '../components/UserFormComponents/Select';
+import Switcher from '../components/UserFormComponents/Switcher';
 
 describe('Forms page', () => {
   test('render forms page', () => {
@@ -27,16 +27,16 @@ describe('Forms page', () => {
 
 describe('User card', () => {
   test('render user card', () => {
-    render(
-      <FormCard
-        name="Super"
-        surname="User"
-        date="2022-10-11"
-        country="France"
-        switcher="With notifications"
-        picture="#"
-      />
-    );
+    const testData = {
+      name: 'Super',
+      surname: 'User',
+      date: '2022-10-11',
+      country: 'France',
+      switcher: 'With notifications',
+      picture: '#',
+    };
+
+    render(<FormCard FormCardData={testData} />);
   });
 });
 

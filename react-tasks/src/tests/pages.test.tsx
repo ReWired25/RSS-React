@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
-import AboutUs from '../pages/AboutUs/AboutUs';
-import ErrorResponse from '../pages/ErrorResponse/ErrorResponse';
-import Main from '../pages/Main/Main';
+import AboutUs from '../pages/AboutUs';
+import ErrorResponse from '../pages/ErrorResponse';
+import Main from '../pages/Main';
 
 describe('render pages', () => {
   test('render pages component', () => {

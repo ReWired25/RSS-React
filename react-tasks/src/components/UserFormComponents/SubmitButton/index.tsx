@@ -1,15 +1,17 @@
 import React from 'react';
 
-class SubmitButton extends React.Component {
+import { ISubmitButtonProps } from './types';
+
+class SubmitButton extends React.Component<ISubmitButtonProps> {
   render() {
     return (
       <div className="submit-button-container">
         <button
-          className="submit-button"
+          className={`submit-button + ${this.props.isSubmitSuccess ? 'submit-success' : ''}`}
           name="submitButton"
           type="submit"
           data-testid="submitButton"
-          disabled
+          disabled={this.props.isDisabled ? true : false}
         >
           Submit
         </button>

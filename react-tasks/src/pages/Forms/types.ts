@@ -1,5 +1,5 @@
-import { InewData } from 'components/UserForm/types';
+import { InewData } from 'components/UserFormComponents/UserForm/types';
 
 export interface IFormsData {
-  value: InewData[];
+  formCards: InewData[];
 }

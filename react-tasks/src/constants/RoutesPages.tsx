@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Layout from '../components/Layout/Layout';
-import Main from '../pages/Main/Main';
-import AboutUs from '../pages/AboutUs/AboutUs';
-import ErrorResponse from '../pages/ErrorResponse/ErrorResponse';
-import Forms from '../pages/Forms/Forms';
+import Layout from '../components/Layout';
+import Main from '../pages/Main';
+import AboutUs from '../pages/AboutUs';
+import ErrorResponse from '../pages/ErrorResponse';
+import Forms from '../pages/Forms';
 
 export const pagesForRoutes = [
   { path: '/', page: <Layout /> },

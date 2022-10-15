@@ -1,52 +1,50 @@
 import React from 'react';
 
-import Input from './Input/Input';
-import SubmitButton from './SubmitButton/SubmitButton';
-import Select from './Select/Select';
-import Switcher from './Switcher/Switcher';
+import Input from '../Input';
+import SubmitButton from '../SubmitButton';
+import Select from '../Select';
+import Switcher from '../Switcher';
 import { UserFormFields } from 'constants/UserFormFields';
 
 import {
   IUserFormProps,
+  IUserFormState,
   InewData,
   IFormsInputs,
   Picture,
   Notifications,
-  InputValue,
   Initial,
   Clear,
 } from './types';
 
-class UserForm extends React.Component<IUserFormProps> {
-  errorsState: HTMLInputElement[] = [];
+class UserForm extends React.Component<IUserFormProps, IUserFormState> {
+  constructor(props: IUserFormProps) {
+    super(props);
+    this.state = { errorsState: [], isSubmitButtonDisabled: true, isSubmitSuccess: false };
+  }
 
-  handleValidInput(input: HTMLInputElement, button: HTMLButtonElement) {
+  handleValidInput(input: HTMLInputElement) {
     const value = input.type === 'checkbox' ? input.checked : input.value;
-    return this.handleValidData(input, value, button);
+    return this.handleValidData(input, value);
   }
 
-  handleValidFile(input: HTMLInputElement, button: HTMLButtonElement) {
+  handleValidFile(input: HTMLInputElement) {
     const value = input.files?.length || input.files?.item(Picture.index)?.type.includes('image');
-    return this.handleValidData(input, value, button);
+    return this.handleValidData(input, value);
   }
 
-  handleValidData(
-    input: HTMLInputElement,
-    value: boolean | number | string | undefined,
-    button: HTMLButtonElement
-  ) {
+  handleValidData(input: HTMLInputElement, value: boolean | number | string | undefined) {
     if (!value) {
-      if (!this.errorsState.includes(input)) this.errorsState.push(input);
-      input.classList.add(InputValue.invalid);
-      button.disabled = true;
+      if (!this.state.errorsState.includes(input)) this.state.errorsState.push(input);
+      this.setState({ isSubmitButtonDisabled: true });
       return false;
     }
 
-    if (this.errorsState.includes(input)) {
-      const index = this.errorsState.indexOf(input);
-      this.errorsState.splice(index, 1);
+    if (this.state.errorsState.includes(input)) {
+      const index = this.state.errorsState.indexOf(input);
+      this.state.errorsState.splice(index, 1);
     }
-    input.classList.remove(InputValue.invalid);
+
     return true;
   }
 
@@ -61,17 +59,17 @@ class UserForm extends React.Component<IUserFormProps> {
       inputSwitcher,
       inputCheckbox,
       inputFile,
-      submitButton,
     } = form;
 
     const isValidArray = [
-      this.handleValidInput(inputName, submitButton),
-      this.handleValidInput(inputSurname, submitButton),
-      this.handleValidInput(inputDate, submitButton),
-      this.handleValidInput(inputCheckbox, submitButton),
-      this.handleValidFile(inputFile, submitButton),
+      this.handleValidInput(inputName),
+      this.handleValidInput(inputSurname),
+      this.handleValidInput(inputDate),
+      this.handleValidInput(inputCheckbox),
+      this.handleValidFile(inputFile),
     ];
     const isValid = isValidArray.every((validData) => validData);
+    console.log(this.state.errorsState);
     if (!isValid) return;
 
     const name = inputName.value;
@@ -85,8 +83,7 @@ class UserForm extends React.Component<IUserFormProps> {
     const newData: InewData = { name, surname, date, country, switcher, picture };
     this.props.onChange(newData);
 
-    submitButton.classList.add('submit-success');
-    submitButton.disabled = true;
+    this.setState({ isSubmitButtonDisabled: true, isSubmitSuccess: true });
 
     [inputName, inputSurname, inputDate, inputFile].forEach((field) => (field.value = Clear.input));
     selectCountry.value = Initial.country;
@@ -96,19 +93,16 @@ class UserForm extends React.Component<IUserFormProps> {
 
   handleSubmitButton: React.FormEventHandler<HTMLFormElement & IFormsInputs> = (e) => {
     const form = e.currentTarget;
-    const button = form.submitButton;
     const { inputName, inputSurname, inputDate, inputCheckbox, inputFile } = form;
 
-    button.classList.remove('submit-success');
+    this.setState({ isSubmitSuccess: false });
 
-    if (this.errorsState.length) {
-      this.errorsState.forEach((input) => {
-        input.type === 'file'
-          ? this.handleValidFile(input, button)
-          : this.handleValidInput(input, button);
+    if (this.state.errorsState.length) {
+      this.state.errorsState.forEach((input) => {
+        input.type === 'file' ? this.handleValidFile(input) : this.handleValidInput(input);
       });
     }
-    if (this.errorsState.length) return;
+    if (this.state.errorsState.length) return;
 
     if (
       inputName.value ||
@@ -117,9 +111,9 @@ class UserForm extends React.Component<IUserFormProps> {
       inputCheckbox.checked ||
       inputFile.files?.length
     ) {
-      button.disabled = false;
+      this.setState({ isSubmitButtonDisabled: false });
     } else {
-      button.disabled = true;
+      this.setState({ isSubmitButtonDisabled: true });
     }
   };
 
@@ -134,13 +128,18 @@ class UserForm extends React.Component<IUserFormProps> {
               inputType={type}
               inputName={name}
               labelText={label}
-              validationMessage={validation}
+              validationMessage={
+                this.state.errorsState.some((input) => input.name === name) && validation
+              }
             />
           );
         })}
         <Select />
         <Switcher />
-        <SubmitButton />
+        <SubmitButton
+          isDisabled={this.state.isSubmitButtonDisabled}
+          isSubmitSuccess={this.state.isSubmitSuccess}
+        />
       </form>
     );
   }

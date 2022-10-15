@@ -3,10 +3,10 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import data from 'assets/data/data';
-import Layout from 'components/Layout/Layout';
-import Card from '../components/Card/Card';
-import AllCards from '../components/AllCards/AllCards';
-import SearchBar from '../components/SearchBar/SearchBar';
+import Layout from 'components/Layout';
+import Card from '../components/Card';
+import AllCards from '../components/AllCards';
+import SearchBar from '../components/SearchBar';
 
 describe('layout render', () => {
   test('render layout component', () => {

@@ -1,4 +1,5 @@
 export interface InewData {
+  [index: string]: string;
   name: string;
   surname: string;
   date: string;
@@ -9,6 +10,12 @@ export interface InewData {
 
 export interface IUserFormProps {
   onChange: (newData: InewData) => void;
+}
+
+export interface IUserFormState {
+  errorsState: HTMLInputElement[];
+  isSubmitButtonDisabled: boolean;
+  isSubmitSuccess: boolean;
 }
 
 export interface IFormsInputs {
@@ -29,10 +36,6 @@ export enum Picture {
 export enum Notifications {
   true = 'With notifications',
   false = 'Without notifications',
-}
-
-export enum InputValue {
-  invalid = 'invalid',
 }
 
 export enum Initial {

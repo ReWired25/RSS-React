@@ -1,6 +1,6 @@
 import '@testing-library/react';
 
-import { setStorage, getStorage } from 'localStorage/localStorage';
+import { setStorage, getStorage } from 'localStorage';
 
 describe('local storage', () => {
   const mockFn: Record<string, jest.SpyInstance> = {};

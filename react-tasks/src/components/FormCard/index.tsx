@@ -11,11 +11,11 @@ class FormCard extends React.Component<IFormCardProps> {
         {FormCardFields.map((fieldName) => {
           return (
             <p key={fieldName} className={`card-${fieldName}`}>
-              {this.props[fieldName]}
+              {this.props.FormCardData[fieldName]}
             </p>
           );
         })}
-        <img className="form-card-img" src={this.props.picture} alt="user-picture" />
+        <img className="form-card-img" src={this.props.FormCardData.picture} alt="user-picture" />
       </div>
     );
   }
