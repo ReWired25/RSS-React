@@ -28,22 +28,22 @@ describe('search bar check', () => {
   });
 });
 
-describe('card render', () => {
-  test('render one card component', () => {
-    render(<Card img="#" title="title" type="type" color="color" price="price" />);
-  });
-});
+// describe('card render', () => {
+//   test('render one card component', () => {
+//     render(<Card img="#" title="title" type="type" color="color" price="price" />);
+//   });
+// });
 
-describe('all cards render', () => {
-  test('render all cards component', () => {
-    render(<AllCards />);
-  });
-});
+// describe('all cards render', () => {
+//   test('render all cards component', () => {
+//     render(<AllCards />);
+//   });
+// });
 
-describe('cards with data', () => {
-  test('render each card with data', () => {
-    data.forEach(({ img, title, type, color, price }) => {
-      render(<Card img={img} title={title} type={type} color={color} price={price} />);
-    });
-  });
-});
+// describe('cards with data', () => {
+//   test('render each card with data', () => {
+//     data.forEach(({ img, title, type, color, price }) => {
+//       render(<Card img={img} title={title} type={type} color={color} price={price} />);
+//     });
+//   });
+// });

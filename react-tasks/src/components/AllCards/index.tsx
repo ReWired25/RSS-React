@@ -1,16 +1,15 @@
 import React from 'react';
 import Card from '../Card';
-import data from '../../assets/data/data';
 
-class AllCards extends React.Component {
+import { IAllCardsProps } from './types';
+
+class AllCards extends React.Component<IAllCardsProps> {
   render() {
     return (
       <div className="all-cards-container">
-        {data.map(({ img, title, type, color, price }, index) => {
-          return (
-            <Card key={index} img={img} title={title} type={type} color={color} price={price} />
-          );
-        })}
+        {this.props.data.map((character) => (
+          <Card key={character.id} img={character.image} name={character.name} />
+        ))}
       </div>
     );
   }
