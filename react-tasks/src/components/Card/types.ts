@@ -1,4 +1,6 @@
+import { IdataResult } from 'pages/Main/types';
+
 export interface ICardProps {
-  img: string;
-  name: string;
+  data: IdataResult;
+  onDataChange: (data: IdataResult) => void;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from 'components/SearchBar';
 import AllCards from 'components/AllCards';
-import LoadInicator from 'components/LoadIndicator';
+import LoadIndicator from 'components/LoadIndicator';
 import ErrorMessage from 'components/ErrorMessage';
 
 import { IMainState, URL, Response } from './types';
@@ -35,7 +35,6 @@ class Main extends React.Component<Record<string, string>, IMainState> {
       }
       const results = await response.json();
       this.setState({ data: results, isLoading: false, isUpdated: false });
-      console.log(results);
     } catch {
       this.setState({ requestError: true, isLoading: false, isUpdated: false });
     }
@@ -49,10 +48,10 @@ class Main extends React.Component<Record<string, string>, IMainState> {
 
   render() {
     return (
-      <div>
+      <div className="main">
         <SearchBar onDataChange={this.handleDataChange.bind(this)} />
         {this.state.isLoading ? (
-          <LoadInicator />
+          <LoadIndicator />
         ) : this.state.requestError ? (
           <ErrorMessage message={Response.notFoundMessage as string} />
         ) : (

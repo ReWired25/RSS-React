@@ -3,8 +3,13 @@ import React from 'react';
 class LoadIndicator extends React.Component {
   render() {
     return (
-      <div className="loading-container">
-        <p className="loading-content">Loading...</p>
+      <div className="load-indicator-container">
+        <div className="indicator-container">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p className="load-indicator-content">Loading</p>
       </div>
     );
   }

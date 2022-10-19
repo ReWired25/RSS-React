@@ -1,0 +1,45 @@
+@keyframes loader {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.load-indicator-container {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.load-indicator-content {
+  font-size: 20px;
+  color: darkmagenta;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.indicator-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.indicator-container span {
+  width: 15px;
+  height: 15px;
+  background-color: darkmagenta;
+  border-radius: 50%;
+  animation: loader 1s infinite;
+}
+
+.indicator-container span:first-child,
+.indicator-container span:last-child {
+  animation-direction: reverse;
+}
