@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 10px;
+  padding: 10px 25px;
   width: 300px;
   height: 430px;
   top: calc(50% - 215px);
@@ -28,6 +28,7 @@
 }
 
 .modal-close-button {
+  align-self: flex-end;
   padding: 5px 10px;
   cursor: pointer;
 }

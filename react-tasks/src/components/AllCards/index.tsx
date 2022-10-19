@@ -11,7 +11,6 @@ class AllCards extends React.Component<IAllCardsProps, IAllCardsState> {
   }
 
   handleModalData(data: IdataResult) {
-    console.log(data);
     this.setState({ modalData: data });
   }
 
