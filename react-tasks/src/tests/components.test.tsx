@@ -20,13 +20,13 @@ describe('layout render', () => {
   });
 });
 
-describe('search bar check', () => {
-  test('check search bar in document', () => {
-    render(<SearchBar />);
+// describe('search bar check', () => {
+//   test('check search bar in document', () => {
+//     render(<SearchBar />);
 
-    expect(screen.getByPlaceholderText('search...'));
-  });
-});
+//     expect(screen.getByPlaceholderText('search...'));
+//   });
+// });
 
 // describe('card render', () => {
 //   test('render one card component', () => {

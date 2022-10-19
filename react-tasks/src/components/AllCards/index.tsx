@@ -7,8 +7,8 @@ class AllCards extends React.Component<IAllCardsProps> {
   render() {
     return (
       <div className="all-cards-container">
-        {this.props.data.map((character) => (
-          <Card key={character.id} img={character.image} name={character.name} />
+        {this.props.data.map(({ id, image, name }) => (
+          <Card key={id} img={image} name={name} />
         ))}
       </div>
     );

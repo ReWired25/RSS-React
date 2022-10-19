@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from 'react';
 import { setStorage, getStorage } from 'localStorage';
 
-import { ISearchBarState } from './types';
+import { ISearchBarProps, ISearchBarState, SearchSubmit } from './types';
 
-class SearchBar extends React.Component<Record<string, string>, ISearchBarState> {
-  constructor(props: Record<string, string>) {
+class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
+  constructor(props: ISearchBarProps) {
     super(props);
   }
 
@@ -27,8 +27,9 @@ class SearchBar extends React.Component<Record<string, string>, ISearchBarState>
   }
 
   handleSearchSubmit(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter' && this.state.value) {
-      console.log('fuck');
+    if (!this.state) return;
+    if (e.key === SearchSubmit.key) {
+      this.props.onDataChange(this.state.value);
     }
   }
 
