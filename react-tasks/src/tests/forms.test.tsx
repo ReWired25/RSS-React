@@ -8,18 +8,13 @@ import Input from '../components/UserFormComponents/Input';
 import Select from '../components/UserFormComponents/Select';
 import Switcher from '../components/UserFormComponents/Switcher';
 
+import { formElementsText, formTestData } from './mocks/data';
+
 describe('Forms page', () => {
   test('render forms page', () => {
     render(<Forms />);
 
-    [
-      'Name:',
-      'Surname:',
-      'Birth:',
-      'Country:',
-      "Receive / Don't recieve notifications",
-      'I consent to personal data',
-    ].forEach((elementText) => {
+    formElementsText.forEach((elementText) => {
       expect(screen.getByText(elementText)).toBeInTheDocument();
     });
   });
@@ -27,16 +22,7 @@ describe('Forms page', () => {
 
 describe('User card', () => {
   test('render user card', () => {
-    const testData = {
-      name: 'Super',
-      surname: 'User',
-      date: '2022-10-11',
-      country: 'France',
-      switcher: 'With notifications',
-      picture: '#',
-    };
-
-    render(<FormCard FormCardData={testData} />);
+    render(<FormCard FormCardData={formTestData} />);
   });
 });
 

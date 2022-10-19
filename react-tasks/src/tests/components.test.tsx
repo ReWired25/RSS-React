@@ -2,11 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import data from 'assets/data/data';
 import Layout from 'components/Layout';
 import Card from '../components/Card';
 import AllCards from '../components/AllCards';
 import SearchBar from '../components/SearchBar';
+import CardModal from 'components/CardModal';
+
+import { characterTestData, charactersTestResults } from './mocks/data';
 
 describe('layout render', () => {
   test('render layout component', () => {
@@ -20,30 +22,39 @@ describe('layout render', () => {
   });
 });
 
-// describe('search bar check', () => {
-//   test('check search bar in document', () => {
-//     render(<SearchBar />);
+describe('search bar check', () => {
+  test('check search bar in document', () => {
+    render(<SearchBar onDataChange={() => {}} />);
+    expect(screen.getByPlaceholderText('search...'));
+  });
+});
 
-//     expect(screen.getByPlaceholderText('search...'));
-//   });
-// });
+describe('card render', () => {
+  test('render one card component', () => {
+    render(<Card data={characterTestData} onDataChange={() => {}} />);
+    expect(screen.getByText('testName'));
+  });
+});
 
-// describe('card render', () => {
-//   test('render one card component', () => {
-//     render(<Card img="#" title="title" type="type" color="color" price="price" />);
-//   });
-// });
+describe('all cards render', () => {
+  test('render all cards component', () => {
+    render(<AllCards data={charactersTestResults} />);
+    expect(screen.getByText('testName'));
+  });
+});
 
-// describe('all cards render', () => {
-//   test('render all cards component', () => {
-//     render(<AllCards />);
-//   });
-// });
+describe('cards with data', () => {
+  test('render each card with data', () => {
+    charactersTestResults.forEach((data) => {
+      render(<Card key={data.id} data={data} onDataChange={() => {}} />);
+      expect(screen.getByText('testName'));
+    });
+  });
+});
 
-// describe('cards with data', () => {
-//   test('render each card with data', () => {
-//     data.forEach(({ img, title, type, color, price }) => {
-//       render(<Card img={img} title={title} type={type} color={color} price={price} />);
-//     });
-//   });
-// });
+describe('modal window', () => {
+  test('render modal window with data', () => {
+    render(<CardModal data={characterTestData} onModalClose={() => {}} />);
+    expect(screen.getByText(/testGender/));
+  });
+});
