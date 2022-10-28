@@ -4,19 +4,28 @@ import userEvent from '@testing-library/user-event';
 
 import Forms from 'pages/Forms';
 import FormCard from '../components/FormCard';
-import Input from '../components/UserFormComponents/Input';
-import Select from '../components/UserFormComponents/Select';
-import Switcher from '../components/UserFormComponents/Switcher';
 
 import { formElementsText, formTestData } from './mocks/data';
 
 describe('Forms page', () => {
-  test('render forms page', () => {
+  test('render forms page and test fields', () => {
     render(<Forms />);
 
     formElementsText.forEach((elementText) => {
       expect(screen.getByText(elementText)).toBeInTheDocument();
     });
+
+    const inputTest = screen.getByTestId('name');
+    userEvent.type(inputTest, 'Mason');
+    expect(inputTest).toHaveValue('Mason');
+
+    const selectTest = screen.getByRole('combobox');
+    userEvent.selectOptions(selectTest, 'Germany');
+    expect(selectTest).toHaveValue('Germany');
+
+    const switcherTest = screen.getByTestId('switcher') as HTMLInputElement;
+    userEvent.click(switcherTest);
+    expect(switcherTest.checked).toBeTruthy();
   });
 });
 
@@ -25,37 +34,3 @@ describe('User card', () => {
     render(<FormCard FormCardData={formTestData} />);
   });
 });
-
-// describe('Input events', () => {
-//   test('Input user type event', async () => {
-//     render(
-//       <Input
-//         inputClassName="testInput"
-//         inputType="text"
-//         inputName="inputTest"
-//         labelText="test"
-//         validationMessage="it's test"
-//       />
-//     );
-
-//     const inputTest = screen.getByTestId('inputTest');
-//     userEvent.type(inputTest, 'text');
-//     expect(inputTest).toHaveValue('text');
-//   });
-
-//   test('Select user event', async () => {
-//     render(<Select />);
-
-//     const inputTest = screen.getByRole('combobox');
-//     userEvent.selectOptions(inputTest, 'Germany');
-//     expect(inputTest).toHaveValue('Germany');
-//   });
-
-//   test('Switcher user type event', async () => {
-//     render(<Switcher />);
-
-//     const inputTest = screen.getByRole('checkbox') as HTMLInputElement;
-//     userEvent.click(inputTest);
-//     expect(inputTest.checked).toBeTruthy();
-//   });
-// });
