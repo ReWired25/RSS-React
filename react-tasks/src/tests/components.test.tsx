@@ -31,7 +31,7 @@ describe('search bar check', () => {
 
 describe('card render', () => {
   test('render one card component', () => {
-    render(<Card data={characterTestData} onDataChange={() => {}} />);
+    render(<Card data={characterTestData} handleModalData={() => {}} />);
     expect(screen.getByText('testName'));
   });
 });
@@ -46,7 +46,7 @@ describe('all cards render', () => {
 describe('cards with data', () => {
   test('render each card with data', () => {
     charactersTestResults.forEach((data) => {
-      render(<Card key={data.id} data={data} onDataChange={() => {}} />);
+      render(<Card key={data.id} data={data} handleModalData={() => {}} />);
       expect(screen.getByText('testName'));
     });
   });

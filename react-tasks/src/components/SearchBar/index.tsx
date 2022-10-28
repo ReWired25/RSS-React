@@ -1,51 +1,41 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
+
 import { setStorage, getStorage } from 'localStorage';
 
-import { ISearchBarProps, ISearchBarState, SearchSubmit } from './types';
+import { ISearchBarProps, SearchSubmit } from './types';
 
-class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
-  constructor(props: ISearchBarProps) {
-    super(props);
-  }
+const SearchBar = (props: ISearchBarProps) => {
+  const [value, setValue] = useState('');
 
-  componentDidMount() {
-    const value = getStorage();
-    if (!value) return;
-    if (value) this.setState({ value: value });
-  }
+  useEffect(() => {
+    const storageValue = getStorage();
+    if (!storageValue) return;
+    setValue(storageValue);
+  }, []);
 
-  componentWillUnmount() {
-    if (!this.state) return;
-    const value = this.state.value;
-    setStorage(value);
-  }
-
-  handleChange(e: ChangeEvent) {
+  const handleChange = (e: ChangeEvent) => {
     const searchInput = e.target as HTMLInputElement;
-    this.setState({ value: searchInput.value });
+    setValue(searchInput.value);
     setStorage(searchInput.value);
-  }
+  };
 
-  handleSearchSubmit(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (!this.state) return;
+  const handleSearchSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === SearchSubmit.key) {
-      this.props.onDataChange(this.state.value);
+      props.onDataChange(value);
     }
-  }
+  };
 
-  render() {
-    return (
-      <input
-        className="search-bar"
-        name="search"
-        type="search"
-        placeholder="search..."
-        onKeyUp={(e) => this.handleSearchSubmit(e)}
-        onChange={(e) => this.handleChange(e)}
-        value={this.state ? this.state.value : ''}
-      />
-    );
-  }
-}
+  return (
+    <input
+      className="search-bar"
+      name="search"
+      type="search"
+      placeholder="search..."
+      onChange={(e) => handleChange(e)}
+      onKeyUp={(e) => handleSearchSubmit(e)}
+      value={value}
+    />
+  );
+};
 
 export default SearchBar;

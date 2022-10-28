@@ -1,7 +1,24 @@
+import { UseFormRegister } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form';
+import { FieldErrors } from 'react-hook-form';
+
+interface IrequiredLength {
+  value: number;
+  message: string;
+}
+
+interface IInputRequired {
+  required: string;
+  minLength?: IrequiredLength;
+  maxLength?: IrequiredLength;
+}
+
 export interface IInputProps {
-  inputClassName: string;
+  className: string;
   labelText: string;
-  inputType: string;
-  inputName: string;
-  validationMessage: string | false;
+  type: string;
+  name: string;
+  register: UseFormRegister<FieldValues>;
+  required: IInputRequired;
+  errors: FieldErrors<FieldValues>;
 }

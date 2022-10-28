@@ -25,24 +25,3 @@
   border-top: 1px solid #d1d1d1;
   border-bottom: 1px solid #d1d1d1;
 }
-
-.card-type {
-  font-size: 18px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.card-color-container {
-  display: flex;
-  gap: 10px;
-}
-
-.current-color {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-.card-price {
-  font-size: 20px;
-  font-weight: bold;
-}

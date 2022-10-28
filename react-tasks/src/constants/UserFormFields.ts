@@ -1,37 +1,61 @@
+export const UserValidFields = ['name', 'surname', 'date', 'checkbox', 'file'];
+
+export const AllFormFields = ['name', 'surname', 'date', 'country', 'switcher', 'file', 'checkbox'];
+
 export const UserFormFields = [
   {
     className: 'input-name',
     type: 'text',
-    name: 'inputName',
+    name: 'name',
     label: 'Name:',
-    validation: '* fill in the field!',
+    required: {
+      required: '* fill in the field',
+      minLength: {
+        value: 3,
+        message: '* minimum 3 characters',
+      },
+      maxLength: {
+        value: 10,
+        message: '* maximum 10 characters',
+      },
+    },
   },
   {
     className: 'input-surname',
     type: 'text',
-    name: 'inputSurname',
+    name: 'surname',
     label: 'Surname:',
-    validation: '* fill in the field!',
+    required: {
+      required: '* fill in the field',
+      minLength: {
+        value: 3,
+        message: '* minimum 3 characters',
+      },
+      maxLength: {
+        value: 10,
+        message: '* maximum 10 characters',
+      },
+    },
   },
   {
     className: 'input-date',
     type: 'date',
-    name: 'inputDate',
+    name: 'date',
     label: 'Birth:',
-    validation: '* select a date!',
+    required: { required: '* select a date!' },
   },
   {
     className: 'input-file',
     type: 'file',
-    name: 'inputFile',
+    name: 'file',
     label: 'Picture:',
-    validation: '* choose an image!',
+    required: { required: '* choose an image!' },
   },
   {
     className: 'input-checkbox',
     type: 'checkbox',
-    name: 'inputCheckbox',
+    name: 'checkbox',
     label: 'I consent to personal data',
-    validation: '* сonsent required!',
+    required: { required: '* сonsent required!' },
   },
 ];

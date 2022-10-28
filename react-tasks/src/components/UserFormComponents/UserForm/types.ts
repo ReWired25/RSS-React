@@ -1,3 +1,14 @@
+export interface IformData {
+  [index: string]: string | boolean | FileList;
+  name: string;
+  surname: string;
+  date: string;
+  country: string;
+  switcher: boolean;
+  checkbox: boolean;
+  file: FileList;
+}
+
 export interface InewData {
   [index: string]: string;
   name: string;
@@ -12,21 +23,8 @@ export interface IUserFormProps {
   onChange: (newData: InewData) => void;
 }
 
-export interface IUserFormState {
-  errorsState: HTMLInputElement[];
-  isSubmitButtonDisabled: boolean;
-  isSubmitSuccess: boolean;
-}
-
-export interface IFormsInputs {
-  inputName: HTMLInputElement;
-  inputSurname: HTMLInputElement;
-  inputDate: HTMLInputElement;
-  selectCountry: HTMLSelectElement;
-  inputSwitcher: HTMLInputElement;
-  inputCheckbox: HTMLInputElement;
-  inputFile: HTMLInputElement;
-  submitButton: HTMLButtonElement;
+export enum HandleField {
+  file = 'file',
 }
 
 export enum Picture {
@@ -39,9 +37,6 @@ export enum Notifications {
 }
 
 export enum Initial {
+  countryField = 'country',
   country = 'France',
-}
-
-export enum Clear {
-  input = '',
 }

@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import UserForm from 'components/UserFormComponents/UserForm';
 import FormCard from 'components/FormCard';
 
-import { IFormsData } from 'pages/Forms/types';
 import { InewData } from 'components/UserFormComponents/UserForm/types';
 
-class Forms extends React.Component<Record<string, string>, IFormsData> {
-  constructor(props: Record<string, string>) {
-    super(props);
-    this.state = { formCards: [] };
-  }
+const Forms = () => {
+  const [formCards, setFormCards] = useState<InewData[]>([]);
 
-  handleNewData({ name, surname, date, country, switcher, picture }: InewData) {
+  const handleNewData = ({ name, surname, date, country, switcher, picture }: InewData) => {
     const newCardData = {
       name: name,
       surname: surname,
@@ -21,25 +17,21 @@ class Forms extends React.Component<Record<string, string>, IFormsData> {
       switcher: switcher,
       picture: picture,
     };
-    const stateValue = this.state.formCards.slice();
 
-    stateValue.push(newCardData);
-    this.setState({ formCards: stateValue });
-  }
+    setFormCards([...formCards, newCardData]);
+  };
 
-  render() {
-    return (
-      <>
-        <UserForm onChange={(newData: InewData) => this.handleNewData(newData)} />
-        <div className="cards-container">
-          {this.state.formCards.length > 0 &&
-            this.state.formCards.map((FormCardData, index) => (
-              <FormCard key={index} FormCardData={FormCardData} />
-            ))}
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <UserForm onChange={(newData: InewData) => handleNewData(newData)} />
+      <div className="cards-container">
+        {formCards.length > 0 &&
+          formCards.map((FormCardData, index) => (
+            <FormCard key={index} FormCardData={FormCardData} />
+          ))}
+      </div>
+    </>
+  );
+};
 
 export default Forms;

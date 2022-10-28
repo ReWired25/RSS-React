@@ -25,7 +25,7 @@ class AllCards extends React.Component<IAllCardsProps, IAllCardsState> {
           <Card
             key={character.id}
             data={character}
-            onDataChange={this.handleModalData.bind(this)}
+            handleModalData={this.handleModalData.bind(this)}
           />
         ))}
         {this.state.modalData && (

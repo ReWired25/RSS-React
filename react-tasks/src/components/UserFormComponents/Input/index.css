@@ -8,8 +8,12 @@
   gap: 5px;
 }
 
-.invalid-message {
-  display: none;
+.form-error-message {
+  position: absolute;
+  display: block;
+  top: 65px;
+  font-size: 15px;
+  color: orangered;
 }
 
 .input-field {
@@ -32,15 +36,7 @@
   height: 20px;
 }
 
-.input-field.invalid ~ .invalid-message {
-  position: absolute;
-  display: block;
-  top: 65px;
-  font-size: 15px;
-  color: orangered;
-}
-
-.input-field[type='checkbox'].invalid ~ .invalid-message {
+.input-field[type='checkbox'] ~ .form-error-message {
   top: 50px;
 }
 
