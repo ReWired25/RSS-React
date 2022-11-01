@@ -13,23 +13,36 @@ export interface IdataResult {
   species: string;
 }
 
-export interface IdataError {
-  error: string;
-}
-
 export interface IMainState {
   data: {
     info: IdataInfo;
     results: IdataResult[];
   } | null;
+  page: string;
   query: string;
   isLoading: boolean;
-  isUpdated: boolean;
   requestError: boolean;
 }
 
+export interface IMainAction {
+  type: string;
+  resultsState?: Partial<IMainState>;
+}
+
+export enum MainActionCase {
+  results = 'results',
+  prevPage = 'prev',
+  nextPage = 'next',
+}
+
+export enum Page {
+  step = 1,
+}
+
 export enum URL {
-  link = 'https://rickandmortyapi.com/api/character/?name=',
+  link = 'https://rickandmortyapi.com/api/character?page=',
+  page = '1',
+  queryName = '&name=',
   queryinitial = '',
 }
 

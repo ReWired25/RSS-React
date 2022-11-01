@@ -1,27 +1,29 @@
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import React, { ChangeEvent, useContext } from 'react';
 
-import { setStorage, getStorage } from 'localStorage';
+import { AppContext } from 'context';
 
-import { ISearchBarProps, SearchSubmit } from './types';
+import { MainActionCase } from 'context/MainState/types';
+import { SearchSubmit } from './types';
 
-const SearchBar = (props: ISearchBarProps) => {
-  const [value, setValue] = useState('');
-
-  useEffect(() => {
-    const storageValue = getStorage();
-    if (!storageValue) return;
-    setValue(storageValue);
-  }, []);
+const SearchBar = () => {
+  const AppState = useContext(AppContext);
+  const { SearchState, MainState, SearchDispatch, MainDispatch } = AppState;
 
   const handleChange = (e: ChangeEvent) => {
     const searchInput = e.target as HTMLInputElement;
-    setValue(searchInput.value);
-    setStorage(searchInput.value);
+    SearchDispatch({ inputValue: searchInput.value });
   };
 
   const handleSearchSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === SearchSubmit.key) {
-      props.onDataChange(value);
+    if (e.key !== SearchSubmit.key) return;
+
+    if (SearchState.value !== MainState.query) {
+      const newState = {
+        query: SearchState.value,
+        isLoading: true,
+        requestError: false,
+      };
+      MainDispatch({ type: MainActionCase.results, resultsState: newState });
     }
   };
 
@@ -33,7 +35,7 @@ const SearchBar = (props: ISearchBarProps) => {
       placeholder="search..."
       onChange={(e) => handleChange(e)}
       onKeyUp={(e) => handleSearchSubmit(e)}
-      value={value}
+      value={SearchState.value}
     />
   );
 };

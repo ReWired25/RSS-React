@@ -1,56 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 
+import { AppContext } from 'context';
 import SearchBar from 'components/SearchBar';
 import AllCards from 'components/AllCards';
 import LoadIndicator from 'components/LoadIndicator';
 import ErrorMessage from 'components/ErrorMessage';
+import Pagination from 'components/Pagination';
 
-import { IMainState, URL, Response } from './types';
+import { URL, Response, MainActionCase } from '../../context/MainState/types';
 
 const Main = () => {
-  const [state, setState] = useState<IMainState>({
-    data: null,
-    query: URL.queryinitial,
-    isLoading: true,
-    isUpdated: true,
-    requestError: false,
-  });
+  const AppState = useContext(AppContext);
+  const { MainState, MainDispatch } = AppState;
 
   useEffect(() => {
     const dataRequest = async () => {
       try {
-        const response = await fetch(URL.link + state.query);
+        const response = await fetch(URL.link + MainState.page + URL.queryName + MainState.query);
         if (response.status === Response.notFoundStatus) {
           throw new Error(Response.notFoundMessage);
         }
         const results = await response.json();
-        setState((state) => ({ ...state, data: results, isLoading: false, isUpdated: false }));
+        const resultsState = { data: results, isLoading: false };
+        console.log(results);
+        MainDispatch({ type: MainActionCase.results, resultsState: resultsState });
       } catch {
-        setState((state) => ({ ...state, requestError: true, isLoading: false, isUpdated: false }));
+        const resultsState = { requestError: true, isLoading: false };
+        MainDispatch({ type: MainActionCase.results, resultsState: resultsState });
       }
     };
     dataRequest();
-  }, [state.isUpdated, state.query]);
-
-  const handleDataChange = (searchInput: string) => {
-    if (searchInput !== state.query) {
-      setState({
-        ...state,
-        query: searchInput,
-        isLoading: true,
-        isUpdated: true,
-        requestError: false,
-      });
-    }
-  };
+  }, [MainDispatch, MainState.page, MainState.query]);
 
   return (
     <div className="main">
-      <SearchBar onDataChange={handleDataChange} />
-      {state.isLoading && <LoadIndicator />}
-      {state.requestError && <ErrorMessage message={Response.notFoundMessage as string} />}
-      {!state.isLoading && !state.requestError && state.data && (
-        <AllCards data={state.data.results} />
+      <SearchBar />
+      {MainState.isLoading && <LoadIndicator />}
+      {MainState.requestError && <ErrorMessage message={Response.notFoundMessage as string} />}
+      {!MainState.isLoading && !MainState.requestError && MainState.data && (
+        <>
+          <AllCards data={MainState.data.results} />
+          <Pagination />
+        </>
       )}
     </div>
   );

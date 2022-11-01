@@ -15,6 +15,7 @@
 @import './components/Header';
 @import './components/Navigation';
 @import './components/SearchBar';
+@import './components/Pagination';
 
 @import './components/CardModal';
 @import './components/ErrorMessage';

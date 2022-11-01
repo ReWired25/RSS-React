@@ -24,7 +24,7 @@ describe('layout render', () => {
 
 describe('search bar check', () => {
   test('check search bar in document', () => {
-    render(<SearchBar onDataChange={() => {}} />);
+    render(<SearchBar />);
     expect(screen.getByPlaceholderText('search...'));
   });
 });

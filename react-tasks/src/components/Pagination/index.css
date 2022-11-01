@@ -1,0 +1,16 @@
+.pagination-container {
+  width: 250px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.page-button {
+  padding: 5px 10px;
+}
+
+.page-button:not(:disabled) {
+  cursor: pointer;
+}
