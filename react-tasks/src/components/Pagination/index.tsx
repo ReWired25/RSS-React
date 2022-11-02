@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { AppContext } from 'context';
 
-import { MainActionCase } from 'context/MainState/types';
+import { MainActionCase, Page } from 'context/MainState/types';
 
 const Pagination = () => {
   const AppState = useContext(AppContext);
@@ -12,20 +12,27 @@ const Pagination = () => {
     MainDispatch({ type: move });
   };
 
+  const handleViewAllPage = () => {
+    if (!MainState.data) return;
+    return MainState.resultsOnPage === Page.maxResults
+      ? MainState.data?.info.pages
+      : MainState.data?.info.pages * Page.allPagesMultiplier;
+  };
+
   return (
     <div className="pagination-container">
       <button
         className="prev-button page-button"
         onClick={() => handlePage(MainActionCase.prevPage)}
-        disabled={MainState.page === '1' ? true : false}
+        disabled={MainState.viewPage === '1' ? true : false}
       >
         Prev
       </button>
-      <p className="page-view">{`${MainState.page} / ${MainState.data?.info.pages}`}</p>
+      <p className="page-view">{`${MainState.viewPage} / ${handleViewAllPage()}`}</p>
       <button
         className="next-button page-button"
         onClick={() => handlePage(MainActionCase.nextPage)}
-        disabled={+MainState.page === MainState.data?.info.pages ? true : false}
+        disabled={+MainState.viewPage === MainState.data?.info.pages ? true : false}
       >
         Next
       </button>

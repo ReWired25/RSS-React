@@ -1,18 +1,24 @@
-import { IMainState, IMainAction, Page, MainActionCase } from './types';
+import { changePageMaxResults, changePageMinResults } from './reducer-functions';
+
+import { IMainState, IMainAction, URL, Page, MainActionCase } from './types';
 
 export const MainReducer = (state: IMainState, action: IMainAction) => {
   switch (action.type) {
     case MainActionCase.results:
       if (!action.resultsState) return state;
       return { ...state, ...action.resultsState };
+    case MainActionCase.minResults:
+      return { ...state, resultsOnPage: Page.minResults, apiPage: URL.page, viewPage: URL.page };
+    case MainActionCase.maxResults:
+      return { ...state, resultsOnPage: Page.maxResults, apiPage: URL.page, viewPage: URL.page };
     case MainActionCase.nextPage:
-      if (!state.data?.info.next) return state;
-      const nextPage = (+state.page + Page.step).toString();
-      return { ...state, page: nextPage };
+      return state.resultsOnPage === Page.minResults
+        ? changePageMinResults(state, MainActionCase.nextPage)
+        : changePageMaxResults(state, MainActionCase.nextPage);
     case MainActionCase.prevPage:
-      if (!state.data?.info.prev) return state;
-      const prevPage = (+state.page - Page.step).toString();
-      return { ...state, page: prevPage };
+      return state.resultsOnPage === Page.minResults
+        ? changePageMinResults(state, MainActionCase.prevPage)
+        : changePageMaxResults(state, MainActionCase.prevPage);
     default:
       return state;
   }

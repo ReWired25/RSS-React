@@ -1,4 +1,5 @@
 export interface IdataInfo {
+  [index: string]: number | string | null;
   count: number;
   next: string | null;
   pages: number;
@@ -18,10 +19,13 @@ export interface IMainState {
     info: IdataInfo;
     results: IdataResult[];
   } | null;
-  page: string;
+  currentResults: IdataResult[] | null;
+  apiPage: string;
+  viewPage: string;
   query: string;
   isLoading: boolean;
   requestError: boolean;
+  resultsOnPage: Page;
 }
 
 export interface IMainAction {
@@ -33,10 +37,20 @@ export enum MainActionCase {
   results = 'results',
   prevPage = 'prev',
   nextPage = 'next',
+  minResults = 'minResults',
+  maxResults = 'maxResults',
 }
 
 export enum Page {
   step = 1,
+  allPagesMultiplier = 2,
+  minResults = '10',
+  maxResults = '20',
+}
+
+export enum TotalResults {
+  start = 0,
+  end = 10,
 }
 
 export enum URL {

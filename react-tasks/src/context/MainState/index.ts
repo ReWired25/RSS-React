@@ -1,9 +1,12 @@
-import { URL } from './types';
+import { URL, Page } from './types';
 
 export const initMainState = {
   data: null,
-  page: URL.page,
+  currentResults: null,
+  apiPage: URL.page,
+  viewPage: URL.page,
   query: URL.queryinitial,
   isLoading: true,
   requestError: false,
+  resultsOnPage: Page.maxResults,
 };
