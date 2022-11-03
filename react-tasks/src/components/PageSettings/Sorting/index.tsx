@@ -6,7 +6,7 @@ import { MainActionCase } from 'context/MainState/types';
 
 const Sorting = () => {
   const AppState = useContext(AppContext);
-  const { MainDispatch } = AppState;
+  const { MainState, MainDispatch } = AppState;
 
   const handleValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
     MainDispatch({ type: e.target.value });
@@ -15,7 +15,12 @@ const Sorting = () => {
   return (
     <label className="sorting-container">
       <p>Sorting on page:</p>
-      <select name="sorting" className="sorting" onChange={(e) => handleValue(e)}>
+      <select
+        name="sorting"
+        className="sorting"
+        onChange={(e) => handleValue(e)}
+        defaultValue={MainState.currentSorting}
+      >
         <option value={MainActionCase.sortDefault}>By creation date</option>
         <option value={MainActionCase.sortAsc}>By alph (ASC)</option>
         <option value={MainActionCase.sortDesc}>By alph (DESC)</option>

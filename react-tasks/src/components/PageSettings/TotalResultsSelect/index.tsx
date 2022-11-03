@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 
 import { AppContext } from 'context';
 
-import { MainActionCase } from 'context/MainState/types';
+import { MainActionCase, Page } from 'context/MainState/types';
 
 const TotalResultsSelect = () => {
   const AppState = useContext(AppContext);
-  const { MainDispatch } = AppState;
+  const { MainState, MainDispatch } = AppState;
 
   const handeTotalResults = (e: React.ChangeEvent<HTMLSelectElement>) => {
     MainDispatch({ type: e.target.value });
@@ -19,6 +19,11 @@ const TotalResultsSelect = () => {
         name="total-results-select"
         className="total-results-select"
         onChange={(e) => handeTotalResults(e)}
+        defaultValue={
+          MainState.resultsOnPage === Page.maxResults
+            ? MainActionCase.maxResults
+            : MainActionCase.minResults
+        }
       >
         <option value={MainActionCase.maxResults}>20 characters</option>
         <option value={MainActionCase.minResults}>10 characters</option>
