@@ -26,6 +26,7 @@ export interface IMainState {
   isLoading: boolean;
   requestError: boolean;
   resultsOnPage: Page;
+  currentSorting: string;
 }
 
 export interface IMainAction {
@@ -39,6 +40,9 @@ export enum MainActionCase {
   nextPage = 'next',
   minResults = 'minResults',
   maxResults = 'maxResults',
+  sortAsc = 'ASC',
+  sortDesc = 'DESC',
+  sortDefault = 'DEFAULT',
 }
 
 export enum Page {

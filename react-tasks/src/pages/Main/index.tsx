@@ -21,6 +21,23 @@ const Main = () => {
   const AppState = useContext(AppContext);
   const { MainState, MainDispatch } = AppState;
 
+  const handleResultsSorting = useCallback(
+    (results: IdataResult[]) => {
+      if (MainState.currentSorting === MainActionCase.sortDefault) return results;
+
+      const sortedResults = results.sort((a, b) => {
+        if (a.name > b.name) return 1;
+        if (a.name < b.name) return -1;
+        return 0;
+      });
+
+      return MainState.currentSorting === MainActionCase.sortAsc
+        ? sortedResults
+        : sortedResults.reverse();
+    },
+    [MainState.currentSorting]
+  );
+
   const handleCurrentResults = useCallback(
     (results: IdataResult[]) => {
       if (MainState.resultsOnPage === Page.maxResults) return results;
@@ -43,7 +60,8 @@ const Main = () => {
         }
 
         const data = await response.json();
-        const currentResults = handleCurrentResults(data.results);
+        const dataResults = handleCurrentResults(data.results);
+        const currentResults = handleResultsSorting(dataResults);
         const dataState = { data: data, currentResults: currentResults, isLoading: false };
 
         MainDispatch({ type: MainActionCase.results, resultsState: dataState });
@@ -53,7 +71,13 @@ const Main = () => {
       }
     };
     dataRequest();
-  }, [MainDispatch, MainState.apiPage, MainState.query, handleCurrentResults]);
+  }, [
+    MainDispatch,
+    MainState.apiPage,
+    MainState.query,
+    handleCurrentResults,
+    handleResultsSorting,
+  ]);
 
   return (
     <div className="main">

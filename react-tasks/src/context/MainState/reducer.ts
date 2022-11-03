@@ -19,6 +19,12 @@ export const MainReducer = (state: IMainState, action: IMainAction) => {
       return state.resultsOnPage === Page.minResults
         ? changePageMinResults(state, MainActionCase.prevPage)
         : changePageMaxResults(state, MainActionCase.prevPage);
+    case MainActionCase.sortDefault:
+      return { ...state, currentSorting: MainActionCase.sortDefault };
+    case MainActionCase.sortDesc:
+      return { ...state, currentSorting: MainActionCase.sortDesc };
+    case MainActionCase.sortAsc:
+      return { ...state, currentSorting: MainActionCase.sortAsc };
     default:
       return state;
   }

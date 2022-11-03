@@ -1,6 +1,6 @@
-import { URL, Page } from './types';
+import { IMainState, URL, Page, MainActionCase } from './types';
 
-export const initMainState = {
+export const initMainState: IMainState = {
   data: null,
   currentResults: null,
   apiPage: URL.page,
@@ -9,4 +9,5 @@ export const initMainState = {
   isLoading: true,
   requestError: false,
   resultsOnPage: Page.maxResults,
+  currentSorting: MainActionCase.sortDefault,
 };
