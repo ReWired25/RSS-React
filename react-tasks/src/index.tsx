@@ -15,7 +15,7 @@ import App from 'App';
 
 import './index.css';
 
-const AppWrapper = () => {
+export const AppWrapper = () => {
   const [SearchState, SearchDispatch] = useReducer(SearchReducer, initSearchState);
   const [MainState, MainDispatch] = useReducer(MainReducer, initMainState);
   const [FormState, FormDispatch] = useReducer(FormReducer, initFormState);

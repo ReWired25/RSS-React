@@ -4,6 +4,8 @@ export const characterTestData = {
   name: 'testName',
   gender: 'testGender',
   species: 'testSpecies',
+  origin: { name: 'testOrigin' },
+  location: { name: 'testLocation' },
 };
 
 export const charactersTestResults = [characterTestData];

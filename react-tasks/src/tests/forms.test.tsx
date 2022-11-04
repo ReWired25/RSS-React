@@ -5,11 +5,18 @@ import userEvent from '@testing-library/user-event';
 import Forms from 'pages/Forms';
 import FormCard from '../components/FormCard';
 
+import { AppContext } from 'context';
+
 import { formElementsText, formTestData } from './mocks/data';
+import { mockContextValue } from './mocks/context';
 
 describe('Forms page', () => {
   test('render forms page and test fields', () => {
-    render(<Forms />);
+    render(
+      <AppContext.Provider value={mockContextValue}>
+        <Forms />
+      </AppContext.Provider>
+    );
 
     formElementsText.forEach((elementText) => {
       expect(screen.getByText(elementText)).toBeInTheDocument();
@@ -17,20 +24,23 @@ describe('Forms page', () => {
 
     const inputTest = screen.getByTestId('name');
     userEvent.type(inputTest, 'Mason');
-    expect(inputTest).toHaveValue('Mason');
+    expect(inputTest).toHaveValue('SuperMason');
 
     const selectTest = screen.getByRole('combobox');
     userEvent.selectOptions(selectTest, 'Germany');
     expect(selectTest).toHaveValue('Germany');
 
     const switcherTest = screen.getByTestId('switcher') as HTMLInputElement;
-    userEvent.click(switcherTest);
     expect(switcherTest.checked).toBeTruthy();
   });
 });
 
 describe('User card', () => {
   test('render user card', () => {
-    render(<FormCard FormCardData={formTestData} />);
+    render(
+      <AppContext.Provider value={mockContextValue}>
+        <FormCard FormCardData={formTestData} />
+      </AppContext.Provider>
+    );
   });
 });
