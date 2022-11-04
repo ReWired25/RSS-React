@@ -5,7 +5,3 @@ export { IdataResult };
 export interface IAllCardsProps {
   data: IdataResult[];
 }
-
-export interface IAllCardsState {
-  modalData: IdataResult | null;
-}

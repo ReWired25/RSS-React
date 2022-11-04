@@ -12,6 +12,8 @@ export interface IdataResult {
   name: string;
   gender: string;
   species: string;
+  origin: Record<string, string>;
+  location: Record<string, string>;
 }
 
 export interface IMainState {

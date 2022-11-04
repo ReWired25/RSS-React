@@ -6,9 +6,11 @@ import { AppContext } from 'context';
 import { initSearchState } from 'context/SearchState';
 import { initMainState } from 'context/MainState';
 import { initFormState } from 'context/FormState';
+import { initCharacterState } from 'context/CharacterState';
 import { SearchReducer } from 'context/SearchState/reducer';
 import { MainReducer } from 'context/MainState/reducer';
 import { FormReducer } from 'context/FormState/reducer';
+import { CharacterReducer } from 'context/CharacterState/reducer';
 import App from 'App';
 
 import './index.css';
@@ -17,14 +19,17 @@ const AppWrapper = () => {
   const [SearchState, SearchDispatch] = useReducer(SearchReducer, initSearchState);
   const [MainState, MainDispatch] = useReducer(MainReducer, initMainState);
   const [FormState, FormDispatch] = useReducer(FormReducer, initFormState);
+  const [CharacterState, CharacterDispatch] = useReducer(CharacterReducer, initCharacterState);
 
   const contextValue = {
     SearchState,
     MainState,
     FormState,
+    CharacterState,
     SearchDispatch,
     MainDispatch,
     FormDispatch,
+    CharacterDispatch,
   };
 
   return (
