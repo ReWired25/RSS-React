@@ -3,5 +3,10 @@ export interface ISearchState {
 }
 
 export interface ISearchAction {
+  type: string;
   inputValue: string;
+}
+
+export enum SearchActionCase {
+  changeValue = 'changeValue',
 }

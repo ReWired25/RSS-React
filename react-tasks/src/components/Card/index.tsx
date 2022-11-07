@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from 'context';
 
 import { ICardProps } from './types';
+import { CharacterActionCase } from 'context/CharacterState/types';
 
 const Card = (props: ICardProps) => {
   const navigate = useNavigate();
   const { CharacterDispatch } = useContext(AppContext);
 
   const handleCharacterData = () => {
-    CharacterDispatch({ newData: props.data });
+    CharacterDispatch({ type: CharacterActionCase.changeData, newData: props.data });
     navigate('/character-info');
   };
 

@@ -5,5 +5,10 @@ export interface ICharacterState {
 }
 
 export interface ICharacterAction {
+  type: string;
   newData: IdataResult;
+}
+
+export enum CharacterActionCase {
+  changeData = 'changeData',
 }
