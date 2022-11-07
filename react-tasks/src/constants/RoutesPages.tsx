@@ -7,7 +7,7 @@ import ErrorResponse from '../pages/ErrorResponse';
 import Forms from '../pages/Forms';
 import CharacterInfo from 'pages/CharacterInfo';
 
-export const pagesForRoutes = [
+export const PAGES_FOR_ROUTES = [
   { path: '/', page: <Layout /> },
   { path: 'index', page: <Main /> },
   { path: 'about-us', page: <AboutUs /> },

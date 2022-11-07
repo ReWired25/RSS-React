@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SelectCountries } from 'constants/Select';
+import { SELECT_COUNTRIES } from 'constants/Select';
 
 import { ISelectProps } from './types';
 
@@ -9,7 +9,7 @@ const Select = (props: ISelectProps) => {
     <label className="select-country-container">
       <p>Country:</p>
       <select className="select-country" {...props.register('country')}>
-        {SelectCountries.map((country) => (
+        {SELECT_COUNTRIES.map((country) => (
           <option key={country} value={country}>
             {country}
           </option>

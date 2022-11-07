@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { FormCardFields } from 'constants/FormCardFields';
+import { FORM_CARD_FIELDS } from 'constants/FormCardFields';
 
 import { IFormCardProps } from './types';
 
 const FormCard = (props: IFormCardProps) => {
   return (
     <div className="form-card">
-      {FormCardFields.map((fieldName) => {
+      {FORM_CARD_FIELDS.map((fieldName) => {
         return (
           <p key={fieldName} className={`card-${fieldName}`}>
             {props.FormCardData[fieldName]}

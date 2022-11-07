@@ -10,7 +10,7 @@ const SubmitButton = (props: ISubmitButtonProps) => {
         name="submitButton"
         type="submit"
         data-testid="submitButton"
-        disabled={props.isActive}
+        disabled={props.isValid}
       >
         Submit
       </button>
