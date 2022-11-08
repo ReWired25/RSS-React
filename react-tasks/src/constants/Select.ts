@@ -1,1 +1,1 @@
-export const SelectCountries = ['France', 'Germany', 'England'];
+export const SELECT_COUNTRIES = ['France', 'Germany', 'England'];

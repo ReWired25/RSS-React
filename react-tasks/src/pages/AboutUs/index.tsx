@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { AboutInfo } from './types';
+import { ABOUT_INFO } from './types';
 
 const AboutUs = () => {
   return (
     <>
       <p className="about-page-info">
-        {AboutInfo.text}
-        <a className="about-page-link" href={AboutInfo.aboutUrl} target="_blank" rel="noreferrer">
-          {AboutInfo.linkText}
+        {ABOUT_INFO.text}
+        <a className="about-page-link" href={ABOUT_INFO.aboutUrl} target="_blank" rel="noreferrer">
+          {ABOUT_INFO.linkText}
         </a>
       </p>
     </>

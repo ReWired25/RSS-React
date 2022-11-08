@@ -1,8 +1,16 @@
-export const UserValidFields = ['name', 'surname', 'date', 'checkbox', 'file'];
+export const USER_VALID_FIELDS = ['name', 'surname', 'date', 'checkbox', 'file'];
 
-export const AllFormFields = ['name', 'surname', 'date', 'country', 'switcher', 'file', 'checkbox'];
+export const ALL_FORM_FIELDS = [
+  'name',
+  'surname',
+  'date',
+  'country',
+  'switcher',
+  'file',
+  'checkbox',
+];
 
-export const UserFormFields = [
+export const USER_FORM_FIELDS = [
   {
     className: 'input-name',
     type: 'text',

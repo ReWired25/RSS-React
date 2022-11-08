@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ISubmitButtonProps } from './types';
 
-const SubmitButton = (props: ISubmitButtonProps) => {
+const SubmitButton = ({ isValid, isSubmit }: ISubmitButtonProps) => {
   return (
     <div className="submit-button-container">
       <button
@@ -10,11 +10,11 @@ const SubmitButton = (props: ISubmitButtonProps) => {
         name="submitButton"
         type="submit"
         data-testid="submitButton"
-        disabled={props.isActive}
+        disabled={isValid}
       >
         Submit
       </button>
-      {props.isSubmit && <p className="submit-message">Your data is saved!</p>}
+      {isSubmit && <p className="submit-message">Your data is saved!</p>}
     </div>
   );
 };

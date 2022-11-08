@@ -4,6 +4,7 @@ import { AppContext } from 'context';
 
 import { MainActionCase } from 'context/MainState/types';
 import { SearchSubmit } from './types';
+import { SearchActionCase } from 'context/SearchState/types';
 
 const SearchBar = () => {
   const AppState = useContext(AppContext);
@@ -11,7 +12,7 @@ const SearchBar = () => {
 
   const handleChange = (e: ChangeEvent) => {
     const searchInput = e.target as HTMLInputElement;
-    SearchDispatch({ inputValue: searchInput.value });
+    SearchDispatch({ type: SearchActionCase.changeValue, inputValue: searchInput.value });
   };
 
   const handleSearchSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {

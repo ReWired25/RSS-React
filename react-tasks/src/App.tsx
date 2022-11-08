@@ -2,10 +2,10 @@ import React from 'react';
 
 import RoutesPages from 'components/RoutesPages';
 
-import { pagesForRoutes } from 'constants/RoutesPages';
+import { PAGES_FOR_ROUTES } from 'constants/RoutesPages';
 
 const App = () => {
-  return <RoutesPages pages={pagesForRoutes} />;
+  return <RoutesPages pages={PAGES_FOR_ROUTES} />;
 };
 
 export default App;

@@ -2,12 +2,12 @@ import React from 'react';
 
 import Navigation from '../Navigation';
 
-import { NavigationLinks } from 'constants/Navigation';
+import { NAVIGATION_LINKS } from 'constants/Navigation';
 
 const Header = () => {
   return (
     <header className="header">
-      <Navigation links={NavigationLinks} />
+      <Navigation links={NAVIGATION_LINKS} />
     </header>
   );
 };

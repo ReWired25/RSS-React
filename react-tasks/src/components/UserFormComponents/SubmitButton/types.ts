@@ -1,4 +1,4 @@
 export interface ISubmitButtonProps {
-  isActive: boolean;
+  isValid: boolean;
   isSubmit: boolean;
 }

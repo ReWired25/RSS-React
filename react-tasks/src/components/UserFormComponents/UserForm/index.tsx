@@ -11,7 +11,7 @@ import { initFormData } from 'context/FormState';
 
 import { FieldValues } from 'react-hook-form';
 import { FormActionCase } from 'context/FormState/types';
-import { UserValidFields, UserFormFields, AllFormFields } from 'constants/UserFormFields';
+import { USER_VALID_FIELDS, USER_FORM_FIELDS, ALL_FORM_FIELDS } from 'constants/UserFormFields';
 import { IformData, InewData, HandleField, Picture, Notifications, Initial } from './types';
 
 const UserForm = () => {
@@ -31,12 +31,12 @@ const UserForm = () => {
   const [submitStatus, setSubmitStatus] = useState(false);
 
   const handleChange = () => {
-    const newDataObj = AllFormFields.reduce((data, field) => {
+    const newDataObj = ALL_FORM_FIELDS.reduce((data, field) => {
       data[field] = getValues(field);
       return data;
     }, {} as IformData);
 
-    const isValidFields = UserValidFields.some((name) =>
+    const isValidFields = USER_VALID_FIELDS.some((name) =>
       name === HandleField.file ? Boolean(getValues(name)?.length) : Boolean(getValues(name))
     );
     setSubmitStatus(false);
@@ -59,7 +59,7 @@ const UserForm = () => {
     setSubmitStatus(true);
     FormDispatch({ type: FormActionCase.changeData, payload: initFormData });
 
-    AllFormFields.forEach((name) => {
+    ALL_FORM_FIELDS.forEach((name) => {
       if (name === Initial.countryField) resetField(name, { defaultValue: Initial.country });
       else resetField(name);
     });
@@ -67,7 +67,7 @@ const UserForm = () => {
 
   return (
     <form className="form" onChange={handleChange} onSubmit={handleSubmit(onSubmit)}>
-      {UserFormFields.map(({ className, type, name, label, required }) => (
+      {USER_FORM_FIELDS.map(({ className, type, name, label, required }) => (
         <Input
           key={className}
           type={type}
@@ -82,7 +82,7 @@ const UserForm = () => {
       <Select register={register} />
       <Switcher register={register} />
       <SubmitButton
-        isActive={Object.values(errors).length ? true : buttonActive}
+        isValid={Object.values(errors).length ? true : buttonActive}
         isSubmit={submitStatus}
       />
     </form>
