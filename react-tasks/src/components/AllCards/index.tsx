@@ -4,10 +4,10 @@ import Card from '../Card';
 
 import { IAllCardsProps } from './types';
 
-const AllCards = (props: IAllCardsProps) => {
+const AllCards = ({ data }: IAllCardsProps) => {
   return (
     <div className="all-cards-container">
-      {props.data.map((character) => (
+      {data.map((character) => (
         <Card key={character.id} data={character} />
       ))}
     </div>

@@ -2,19 +2,12 @@ import React from 'react';
 
 import { IInputProps } from './types';
 
-const Input = (props: IInputProps) => {
+const Input = ({ className, labelText, type, name, required, errors, register }: IInputProps) => {
   return (
-    <label className={`${props.className} input-label`}>
-      <p>{props.labelText}</p>
-      <input
-        className="input-field"
-        type={props.type}
-        data-testid={props.name}
-        {...props.register(props.name, props.required)}
-      />
-      {props.errors[props.name] && (
-        <p className="form-error-message">{props.errors[props.name]?.message as string}</p>
-      )}
+    <label className={`${className} input-label`}>
+      <p>{labelText}</p>
+      <input className="input-field" type={type} data-testid={name} {...register(name, required)} />
+      {errors[name] && <p className="form-error-message">{errors[name]?.message as string}</p>}
     </label>
   );
 };

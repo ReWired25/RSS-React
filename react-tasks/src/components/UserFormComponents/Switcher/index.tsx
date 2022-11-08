@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ISwitcherProps } from './types';
 
-const Switcher = (props: ISwitcherProps) => {
+const Switcher = ({ register }: ISwitcherProps) => {
   return (
     <div className="switcher-container">
       <p className="switcher-text">Receive / Don&apos;t recieve notifications</p>
@@ -11,7 +11,7 @@ const Switcher = (props: ISwitcherProps) => {
           className="switcher-input"
           type="checkbox"
           data-testid="switcher"
-          {...props.register('switcher')}
+          {...register('switcher')}
         />
         <span className="switcher-slider"></span>
       </label>

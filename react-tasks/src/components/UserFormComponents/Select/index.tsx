@@ -4,13 +4,13 @@ import { SELECT_COUNTRIES } from 'constants/Select';
 
 import { ISelectProps } from './types';
 
-const Select = (props: ISelectProps) => {
+const Select = ({ register }: ISelectProps) => {
   return (
     <label className="select-country-container">
       <p>Country:</p>
-      <select className="select-country" {...props.register('country')}>
-        {SELECT_COUNTRIES.map((country) => (
-          <option key={country} value={country}>
+      <select className="select-country" {...register('country')}>
+        {SELECT_COUNTRIES.map((country, index) => (
+          <option key={index} value={country}>
             {country}
           </option>
         ))}
