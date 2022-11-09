@@ -1,16 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+
+import { store } from 'store';
 import Main from 'pages/Main';
 
-import { AppContext } from 'context';
-import { mockContextValue } from './mocks/context';
+// import { mockContextValue } from './mocks/context';
 
 describe('mock api', () => {
   test('test mocking api request', () => {
     render(
-      <AppContext.Provider value={mockContextValue}>
+      <Provider store={store}>
         <Main />
-      </AppContext.Provider>
+      </Provider>
     );
     expect(screen.getByText('Loading'));
     setTimeout(() => {

@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { AppContext } from 'context';
-
-import { MainActionCase, Page } from 'context/MainState/types';
+import { RootState } from 'store/types';
+import { Page } from 'store/MainState/types';
+import { changePage } from 'store/MainState/reducer';
 
 const Pagination = () => {
-  const AppState = useContext(AppContext);
-  const { MainState, MainDispatch } = AppState;
+  const { MainState } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
 
-  const handlePage = (move: string) => {
-    MainDispatch({ type: move });
+  const handlePage = (move: Page) => {
+    dispatch(changePage(move));
   };
 
   const handleViewAllPage = () => {
@@ -23,7 +24,7 @@ const Pagination = () => {
     <div className="pagination-container">
       <button
         className="prev-button page-button"
-        onClick={() => handlePage(MainActionCase.prevPage)}
+        onClick={() => handlePage(Page.prevPage)}
         disabled={MainState.viewPage === '1' ? true : false}
       >
         Prev
@@ -31,7 +32,7 @@ const Pagination = () => {
       <p className="page-view">{`${MainState.viewPage} / ${handleViewAllPage()}`}</p>
       <button
         className="next-button page-button"
-        onClick={() => handlePage(MainActionCase.nextPage)}
+        onClick={() => handlePage(Page.nextPage)}
         disabled={+MainState.viewPage === MainState.data?.info.pages ? true : false}
       >
         Next

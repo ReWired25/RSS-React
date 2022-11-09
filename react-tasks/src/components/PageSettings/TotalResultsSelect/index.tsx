@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 
-import { AppContext } from 'context';
+import { minMaxResults } from 'store/MainState/reducer';
 
-import { MainActionCase, Page } from 'context/MainState/types';
+import { Page } from 'store/MainState/types';
 
 const TotalResultsSelect = () => {
-  const AppState = useContext(AppContext);
-  const { MainState, MainDispatch } = AppState;
+  const dispatch = useDispatch();
 
   const handeTotalResults = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    MainDispatch({ type: e.target.value });
+    dispatch(minMaxResults(e.target.value as Page));
   };
 
   return (
@@ -19,14 +19,10 @@ const TotalResultsSelect = () => {
         name="total-results-select"
         className="total-results-select"
         onChange={(e) => handeTotalResults(e)}
-        defaultValue={
-          MainState.resultsOnPage === Page.maxResults
-            ? MainActionCase.maxResults
-            : MainActionCase.minResults
-        }
+        defaultValue={Page.maxResults}
       >
-        <option value={MainActionCase.maxResults}>20 characters</option>
-        <option value={MainActionCase.minResults}>10 characters</option>
+        <option value={Page.maxResults}>20 characters</option>
+        <option value={Page.minResults}>10 characters</option>
       </select>
     </label>
   );

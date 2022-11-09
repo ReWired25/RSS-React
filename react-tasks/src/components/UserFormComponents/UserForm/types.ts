@@ -1,12 +1,12 @@
 export interface IformData {
-  [index: string]: string | boolean | FileList;
+  [index: string]: string | boolean | undefined | FileList;
   name: string;
   surname: string;
   date: string;
   country: string;
   switcher: boolean;
   checkbox: boolean;
-  file: FileList;
+  file?: FileList;
 }
 
 export interface InewData {

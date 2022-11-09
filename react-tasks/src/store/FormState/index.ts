@@ -1,16 +1,17 @@
-import { InewData } from 'components/UserFormComponents/UserForm/types';
+import { IformData, InewData } from 'components/UserFormComponents/UserForm/types';
 
-export const initFormData = {
+export const initFormData: IformData = {
   name: '',
   surname: '',
   date: '',
   country: 'France',
   switcher: false,
   checkbox: false,
-  file: {} as FileList,
 };
 
 export const initFormState = {
   formData: initFormData,
   formCards: [] as InewData[],
+  buttonActive: true,
+  submitStatus: false,
 };

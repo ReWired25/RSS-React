@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { AppContext } from 'context';
+import { changeCharacterData } from 'store/CharacterState/reducer';
 
 import { ICardProps } from './types';
-import { CharacterActionCase } from 'context/CharacterState/types';
 
 const Card = ({ data }: ICardProps) => {
   const navigate = useNavigate();
-  const { CharacterDispatch } = useContext(AppContext);
+  const dispatch = useDispatch();
 
   const handleCharacterData = () => {
-    CharacterDispatch({ type: CharacterActionCase.changeData, newData: data });
+    dispatch(changeCharacterData(data));
     navigate('/character-info');
   };
 

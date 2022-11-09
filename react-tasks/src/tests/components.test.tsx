@@ -1,14 +1,15 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-import { AppContext } from 'context';
+import { store } from 'store';
 import Layout from 'components/Layout';
 import Card from '../components/Card';
 import AllCards from '../components/AllCards';
 import SearchBar from '../components/SearchBar';
 
-import { mockContextValue } from './mocks/context';
+// import { mockContextValue } from './mocks/context';
 import { characterTestData, charactersTestResults } from './mocks/data';
 
 describe('layout render', () => {
@@ -26,9 +27,9 @@ describe('layout render', () => {
 describe('search bar check', () => {
   test('check search bar in document', () => {
     render(
-      <AppContext.Provider value={mockContextValue}>
+      <Provider store={store}>
         <SearchBar />
-      </AppContext.Provider>
+      </Provider>
     );
     expect(screen.getByPlaceholderText('search...'));
   });

@@ -16,11 +16,13 @@ export interface IdataResult {
   location: Record<string, string>;
 }
 
+export interface Idata {
+  info: IdataInfo;
+  results: IdataResult[];
+}
+
 export interface IMainState {
-  data: {
-    info: IdataInfo;
-    results: IdataResult[];
-  } | null;
+  data: Idata | null;
   currentResults: IdataResult[] | null;
   apiPage: string;
   viewPage: string;
@@ -31,20 +33,19 @@ export interface IMainState {
   currentSorting: string;
 }
 
-export interface IMainAction {
+export interface InewResultsAction {
   type: string;
-  resultsState?: Partial<IMainState>;
+  payload: Partial<IMainState>;
 }
 
-export enum MainActionCase {
-  results = 'results',
-  prevPage = 'prev',
-  nextPage = 'next',
-  minResults = 'minResults',
-  maxResults = 'maxResults',
-  sortAsc = 'ASC',
-  sortDesc = 'DESC',
-  sortDefault = 'DEFAULT',
+export interface IsortingAction {
+  type: string;
+  payload: string;
+}
+
+export interface ItotalResultsAndPagesAction {
+  type: string;
+  payload: Page;
 }
 
 export enum Page {
@@ -52,6 +53,14 @@ export enum Page {
   allPagesMultiplier = 2,
   minResults = '10',
   maxResults = '20',
+  prevPage = 'prev',
+  nextPage = 'next',
+}
+
+export enum Sort {
+  asc = 'ASC',
+  desc = 'DESC',
+  default = 'DEFAULT',
 }
 
 export enum TotalResults {

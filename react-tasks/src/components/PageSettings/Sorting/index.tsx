@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { AppContext } from 'context';
+import { sorting } from 'store/MainState/reducer';
 
-import { MainActionCase } from 'context/MainState/types';
+import { RootState } from 'store/types';
+import { Sort } from 'store/MainState/types';
 
 const Sorting = () => {
-  const AppState = useContext(AppContext);
-  const { MainState, MainDispatch } = AppState;
+  const { MainState } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
 
   const handleValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    MainDispatch({ type: e.target.value });
+    dispatch(sorting(e.target.value));
   };
 
   return (
@@ -21,9 +23,9 @@ const Sorting = () => {
         onChange={(e) => handleValue(e)}
         defaultValue={MainState.currentSorting}
       >
-        <option value={MainActionCase.sortDefault}>By creation date</option>
-        <option value={MainActionCase.sortAsc}>By alph (ASC)</option>
-        <option value={MainActionCase.sortDesc}>By alph (DESC)</option>
+        <option value={Sort.default}>By creation date</option>
+        <option value={Sort.asc}>By alph (ASC)</option>
+        <option value={Sort.desc}>By alph (DESC)</option>
       </select>
     </label>
   );

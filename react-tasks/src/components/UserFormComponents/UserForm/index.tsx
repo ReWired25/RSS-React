@@ -1,22 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Input from '../Input';
 import Select from '../Select';
 import Switcher from '../Switcher';
 import SubmitButton from '../SubmitButton';
 
-import { AppContext } from 'context';
-import { initFormData } from 'context/FormState';
+import { changeFormState } from 'store/FormState/reducer';
+import { initFormData } from 'store/FormState';
 
-import { FieldValues } from 'react-hook-form';
-import { FormActionCase } from 'context/FormState/types';
 import { USER_VALID_FIELDS, USER_FORM_FIELDS, ALL_FORM_FIELDS } from 'constants/UserFormFields';
+
+import { RootState } from 'store/types';
+import { FieldValues } from 'react-hook-form';
 import { IformData, InewData, HandleField, Picture, Notifications, Initial } from './types';
 
 const UserForm = () => {
-  const AppState = useContext(AppContext);
-  const { FormState, FormDispatch } = AppState;
+  const { FormState } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -27,11 +29,9 @@ const UserForm = () => {
   } = useForm({
     defaultValues: FormState.formData,
   });
-  const [buttonActive, setButtonActive] = useState(true);
-  const [submitStatus, setSubmitStatus] = useState(false);
 
   const handleChange = () => {
-    const newDataObj = ALL_FORM_FIELDS.reduce((data, field) => {
+    const FormData = ALL_FORM_FIELDS.reduce((data, field) => {
       data[field] = getValues(field);
       return data;
     }, {} as IformData);
@@ -39,9 +39,9 @@ const UserForm = () => {
     const isValidFields = USER_VALID_FIELDS.some((name) =>
       name === HandleField.file ? Boolean(getValues(name)?.length) : Boolean(getValues(name))
     );
-    setSubmitStatus(false);
-    setButtonActive(!isValidFields);
-    FormDispatch({ type: FormActionCase.changeData, payload: newDataObj });
+    const submitStatus = false;
+    const buttonActive = !isValidFields;
+    dispatch(changeFormState({ FormData, buttonActive, submitStatus }));
   };
 
   const onSubmit = (data: FieldValues | IformData) => {
@@ -50,14 +50,11 @@ const UserForm = () => {
     const pictureFile = data.file.item(Picture.index) as File;
     const picture = URL.createObjectURL(pictureFile);
 
-    const newData: InewData = { name, surname, date, country, switcher, picture };
-    FormDispatch({
-      type: FormActionCase.changeCards,
-      payload: [...FormState.formCards, newData],
-    });
-
-    setSubmitStatus(true);
-    FormDispatch({ type: FormActionCase.changeData, payload: initFormData });
+    const newCard: InewData = { name, surname, date, country, switcher, picture };
+    const submitStatus = true;
+    const buttonActive = true;
+    const FormData = initFormData;
+    dispatch(changeFormState({ newCard, FormData, buttonActive, submitStatus }));
 
     ALL_FORM_FIELDS.forEach((name) => {
       if (name === Initial.countryField) resetField(name, { defaultValue: Initial.country });
@@ -82,8 +79,8 @@ const UserForm = () => {
       <Select register={register} />
       <Switcher register={register} />
       <SubmitButton
-        isValid={Object.values(errors).length ? true : buttonActive}
-        isSubmit={submitStatus}
+        isValid={Object.values(errors).length ? true : FormState.buttonActive}
+        isSubmit={FormState.submitStatus}
       />
     </form>
   );

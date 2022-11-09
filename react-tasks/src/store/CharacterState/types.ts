@@ -1,4 +1,4 @@
-import { IdataResult } from 'context/MainState/types';
+import { IdataResult } from 'store/MainState/types';
 
 export interface ICharacterState {
   CharacterData: IdataResult;
@@ -6,7 +6,7 @@ export interface ICharacterState {
 
 export interface ICharacterAction {
   type: string;
-  newData: IdataResult;
+  payload: IdataResult;
 }
 
 export enum CharacterActionCase {

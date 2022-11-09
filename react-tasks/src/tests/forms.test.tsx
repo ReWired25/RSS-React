@@ -1,21 +1,23 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
 
+import { store } from 'store';
 import Forms from 'pages/Forms';
 import FormCard from '../components/FormCard';
 
-import { AppContext } from 'context';
+// import { AppContext } from 'context';
 
 import { formElementsText, formTestData } from './mocks/data';
-import { mockContextValue } from './mocks/context';
+// import { mockContextValue } from './mocks/context';
 
 describe('Forms page', () => {
   test('render forms page and test fields', () => {
     render(
-      <AppContext.Provider value={mockContextValue}>
+      <Provider store={store}>
         <Forms />
-      </AppContext.Provider>
+      </Provider>
     );
 
     formElementsText.forEach((elementText) => {
@@ -38,9 +40,9 @@ describe('Forms page', () => {
 describe('User card', () => {
   test('render user card', () => {
     render(
-      <AppContext.Provider value={mockContextValue}>
+      <Provider store={store}>
         <FormCard FormCardData={formTestData} />
-      </AppContext.Provider>
+      </Provider>
     );
   });
 });

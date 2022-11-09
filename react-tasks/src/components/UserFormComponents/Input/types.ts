@@ -1,6 +1,7 @@
 import { UseFormRegister } from 'react-hook-form';
 import { FieldValues } from 'react-hook-form';
 import { FieldErrors } from 'react-hook-form';
+import { IformData } from '../UserForm/types';
 
 interface IrequiredLength {
   value: number;
@@ -18,7 +19,7 @@ export interface IInputProps {
   labelText: string;
   type: string;
   name: string;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<IformData>;
   required: IInputRequired;
   errors: FieldErrors<FieldValues>;
 }

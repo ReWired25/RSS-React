@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import UserForm from 'components/UserFormComponents/UserForm';
 import FormCard from 'components/FormCard';
-import { AppContext } from 'context';
+
+import { RootState } from 'store/types';
 
 const Forms = () => {
-  const AppState = useContext(AppContext);
-  const { FormState } = AppState;
+  const { FormState } = useSelector((state: RootState) => state);
 
   return (
     <>

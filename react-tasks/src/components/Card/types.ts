@@ -1,4 +1,4 @@
-import { IdataResult } from 'context/MainState/types';
+import { IdataResult } from 'store/MainState/types';
 
 export interface ICardProps {
   data: IdataResult;

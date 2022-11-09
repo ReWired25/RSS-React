@@ -1,30 +1,32 @@
-import React, { ChangeEvent, useContext } from 'react';
+import React, { ChangeEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { AppContext } from 'context';
+import { changeSearchValue } from 'store/SearchState/reducer';
+import { newResults } from 'store/MainState/reducer';
 
-import { MainActionCase } from 'context/MainState/types';
+import { RootState } from 'store/types';
 import { SearchSubmit } from './types';
-import { SearchActionCase } from 'context/SearchState/types';
 
 const SearchBar = () => {
-  const AppState = useContext(AppContext);
-  const { SearchState, MainState, SearchDispatch, MainDispatch } = AppState;
+  const { SearchState, MainState } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
 
   const handleChange = (e: ChangeEvent) => {
     const searchInput = e.target as HTMLInputElement;
-    SearchDispatch({ type: SearchActionCase.changeValue, inputValue: searchInput.value });
+    dispatch(changeSearchValue(searchInput.value));
   };
 
   const handleSearchSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== SearchSubmit.key) return;
 
     if (SearchState.value !== MainState.query) {
-      const newState = {
-        query: SearchState.value,
-        isLoading: true,
-        requestError: false,
-      };
-      MainDispatch({ type: MainActionCase.results, resultsState: newState });
+      dispatch(
+        newResults({
+          query: SearchState.value,
+          isLoading: true,
+          requestError: false,
+        })
+      );
     }
   };
 

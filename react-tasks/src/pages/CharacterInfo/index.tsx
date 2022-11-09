@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { AppContext } from 'context';
-
+import { RootState } from 'store/types';
 import { Ifields, fieldsValues } from './types';
 
 const CharacterInfo = () => {
-  const { CharacterState, MainState } = useContext(AppContext);
+  const { CharacterState, MainState } = useSelector((state: RootState) => state);
   const { id, gender, image, name, species, origin, location } = CharacterState.CharacterData;
   const position = (MainState.currentResults?.findIndex((data) => data.id === id) as number) + 1;
   const fields: Ifields = {
