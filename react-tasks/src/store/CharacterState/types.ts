@@ -1,7 +1,7 @@
 import { IdataResult } from 'store/MainState/types';
 
 export interface ICharacterState {
-  CharacterData: IdataResult;
+  CharacterData: IdataResult | null;
 }
 
 export interface ICharacterAction {

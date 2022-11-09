@@ -9,9 +9,6 @@ import ErrorResponse from '../pages/ErrorResponse';
 import Main from '../pages/Main';
 import CharacterInfo from 'pages/CharacterInfo';
 
-// import { AppContext } from '../context/index';
-// import { mockContextValue } from './mocks/context';
-
 describe('render pages', () => {
   test('render pages component', () => {
     render(<AboutUs />);
@@ -52,6 +49,6 @@ describe('character info page', () => {
       </Provider>
     );
 
-    expect(screen.getByText('testOrigin'));
+    expect(screen.getByText(/update the app/));
   });
 });

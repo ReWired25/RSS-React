@@ -3,10 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { RootState } from 'store/types';
-import { Ifields, fieldsValues } from './types';
+import { Ifields, fieldsValues, characterDataError } from './types';
 
 const CharacterInfo = () => {
   const { CharacterState, MainState } = useSelector((state: RootState) => state);
+
+  if (!CharacterState.CharacterData) {
+    return <p>{characterDataError.errorMessage}</p>;
+  }
+
   const { id, gender, image, name, species, origin, location } = CharacterState.CharacterData;
   const position = (MainState.currentResults?.findIndex((data) => data.id === id) as number) + 1;
   const fields: Ifields = {
