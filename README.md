@@ -1,4 +1,4 @@
-Project for the course RCC react.
+Project for the [Rolling Scopes School](https://rs.school) React course.
 
 Implemented in different modules of the project:  
 * Global state with context API with reducers
